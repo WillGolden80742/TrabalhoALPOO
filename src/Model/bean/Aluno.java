@@ -9,7 +9,7 @@ package Model.bean;
  *
  * @author rafam
  */
-public class Aluno {
+public class Aluno extends Disciplina {
     private int matricula;
     private String nomeAluno;
 

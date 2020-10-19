@@ -9,7 +9,8 @@ package Model.bean;
  *
  * @author William
  */
-public class Disciplina {
+public class Disciplina extends Curso {
+    
     int CodDisc;
     String NomeDisc;
     int CargaHoraria;	

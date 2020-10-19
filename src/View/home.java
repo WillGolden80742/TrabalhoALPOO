@@ -3,16 +3,13 @@ package View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Aula extends javax.swing.JFrame implements ActionListener {
-
+public class home extends javax.swing.JFrame implements ActionListener {
     
-    Mostrar m = new Mostrar();
-    
-    public Aula() {
+    public home() {
         initComponents();
     }
 
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -86,20 +83,19 @@ public class Aula extends javax.swing.JFrame implements ActionListener {
 
         menuBar.add(sairMenu);
 
-        cadCursoItem.addActionListener(this);   
-        cadDisciplinaItem.addActionListener(this);  
-        cadAlunoItem.addActionListener(this);
-        cadProfessorItem.addActionListener(this);  
-        mostrarCursosItem.addActionListener(this);  
-        mostrarDisciplinasItem.addActionListener(this); 
-        mostrarProfessoresItem.addActionListener(this);    
-        mostrarCursosProfessoresItem.addActionListener(this);     
-        mostrarCursosDisciplinasItem.addActionListener(this);         
-        mostrarAlunosItem.addActionListener(this);
-        mostrarProfessoresDisciplinas.addActionListener(this); 
-        sairItem.addActionListener(this);
-
         setJMenuBar(menuBar);
+
+        cadCursoItem.addActionListener(this);
+        cadDisciplinaItem.addActionListener(this);
+        cadAlunoItem.addActionListener(this);
+        cadProfessorItem.addActionListener(this);
+        mostrarCursosItem.addActionListener(this);
+        mostrarDisciplinasItem.addActionListener(this);
+        mostrarAlunosItem.addActionListener(this);
+        mostrarProfessoresItem.addActionListener(this);
+        mostrarCursosProfessoresItem.addActionListener(this);
+        mostrarCursosDisciplinasItem.addActionListener(this);
+        mostrarProfessoresDisciplinas.addActionListener(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,18 +115,26 @@ public class Aula extends javax.swing.JFrame implements ActionListener {
         if (e.getSource() == sairItem) {
             System.exit(0);
         }
-        if (e.getSource() == mostrarCursosItem) {
+        if (e.getSource() == mostrarCursosItem) {       
+            mostrar m = new mostrar();
             m.setVisible(true);
-            m.readCursoTable();
+            m.readCursosTable();
         }        
         if (e.getSource() == mostrarAlunosItem) {
+            mostrar m = new mostrar();
             m.setVisible(true);
-            m.readAlunoTable();
+            m.readAlunosTable();
         }
         if (e.getSource() == mostrarDisciplinasItem) {
+            mostrar m = new mostrar();
             m.setVisible(true);
-            m.readDisciplinaTable();
-        }        
+            m.readDisciplinasTable();
+        }      
+        if (e.getSource() == mostrarCursosDisciplinasItem) {
+            mostrar m = new mostrar();
+            m.setVisible(true);
+            m.readCursosDisciplinasTable();
+        }         
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -146,20 +150,21 @@ public class Aula extends javax.swing.JFrame implements ActionListener {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Aula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Aula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Aula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Aula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Aula().setVisible(true);
+                new home().setVisible(true);
             }
         });
     }

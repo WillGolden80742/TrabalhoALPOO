@@ -5,8 +5,9 @@
  */
 package Model.DAO;
 
-import Model.bean.Disciplina;
-import connectionfactory.ConnectionFactory;
+import Model.DAO.alunosDAO;
+import Model.bean.Curso;
+import ConnectionFactory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,27 +21,27 @@ import java.util.logging.Logger;
  *
  * @author William
  */
-public class disciplinaDAO {
-    
-    public List<Disciplina> read () {
-      
+public class cursosDAO {
+
+    public List<Curso> read() {
         Connection con = ConnectionFactory.getConnection();
-     
+
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Disciplina> Disciplinas = new ArrayList<>();
+        List<Curso> Cursos = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from disciplina ");
+            stmt = con.prepareStatement("select * from Curso");
             rs = stmt.executeQuery();
-            while(rs.next()){
-                Disciplina disciplina = new Disciplina();
-                disciplina.setCodDisc(rs.getInt("CodDisc"));
-                disciplina.setNomeDisc(rs.getString("NomeDisc"));
-                Disciplinas.add(disciplina);
+            while (rs.next()) {
+                Curso curso = new Curso();
+                curso.setCodCurso(rs.getInt("CodCurso"));
+                curso.setNomeCurso(rs.getString("NomeCurso"));
+                Cursos.add(curso);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(disciplinaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }      
-        return Disciplinas;
-   }
+            Logger.getLogger(alunosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Cursos;
+    }
+    
 }

@@ -5,26 +5,25 @@
  */
 package View;
 
-import Model.DAO.cursoDAO;
-import Model.DAO.disciplinaDAO;
+import Model.DAO.cursosDAO;
+import Model.DAO.disciplinasDAO;
 import javax.swing.table.DefaultTableModel;
-import model.DAO.alunoDAO;
+import Model.DAO.alunosDAO;
 
 /**
  *
  * @author William
  */
-public class Mostrar extends javax.swing.JFrame {
+public class mostrar extends javax.swing.JFrame {
 
-    alunoDAO aDAO = new alunoDAO();
-    disciplinaDAO dDAO = new disciplinaDAO();
-    cursoDAO cDAO = new cursoDAO();
+    alunosDAO aDAO = new alunosDAO();
+    disciplinasDAO dDAO = new disciplinasDAO();
+    cursosDAO cDAO = new cursosDAO();
     /**
      * Creates new form Alunos
      */
-    public Mostrar() {
+    public mostrar() {
         initComponents();
-        readAlunoTable ();
     }
     
     void setTitulos (String t,String a,String b) {
@@ -32,7 +31,7 @@ public class Mostrar extends javax.swing.JFrame {
         mostrarTable.setModel(new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {a,b}));
     } 
     
-    public void readAlunoTable (){
+    public void readAlunosTable (){
         setTitulos("Alunos","Matricula","Nome");
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
@@ -44,7 +43,7 @@ public class Mostrar extends javax.swing.JFrame {
         });
     }
     
-    public void readDisciplinaTable (){
+    public void readDisciplinasTable (){
         setTitulos("Disciplinas","Código","Nome Disc.");
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
@@ -56,7 +55,7 @@ public class Mostrar extends javax.swing.JFrame {
         });
     }    
 
-    public void readCursoTable (){
+    public void readCursosTable (){
         setTitulos("Cursos","Código","Nome curso");
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
@@ -66,7 +65,21 @@ public class Mostrar extends javax.swing.JFrame {
                 c.getNomeCurso()
             });
         });
-    }     
+    }   
+    
+    public void readCursosDisciplinasTable (){
+        setTitulos("Cursos/Disciplinas","Nome Curso","Nome Disc.");
+        DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
+        modelo.setNumRows(0);
+        dDAO.readCursoDisciplina().forEach((c) -> {
+            modelo.addRow(new Object[]{
+                c.getNomeCurso(),
+                c.getNomeDisc()
+            });
+        });
+    }  
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

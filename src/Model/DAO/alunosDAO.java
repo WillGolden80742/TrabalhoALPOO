@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.DAO;
+package Model.DAO;
 
 import Model.bean.Aluno;
-import connectionfactory.ConnectionFactory;
+import ConnectionFactory.ConnectionFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author rafam
  */
-public class alunoDAO {
+public class alunosDAO {
     public List <Aluno> read(){
         Connection con = ConnectionFactory.getConnection();
      
@@ -37,7 +37,7 @@ public class alunoDAO {
                 Alunos.add(alu);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(alunoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(alunosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Alunos ;
     }
