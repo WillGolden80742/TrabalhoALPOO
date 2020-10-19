@@ -73,7 +73,7 @@
                 <Property name="text" type="java.lang.String" value="Cursos/Disciplinas"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mostrarProfessoresDisciplinas">
+            <MenuItem class="javax.swing.JMenuItem" name="mostrarProfessoresDisciplinasItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Professores/Disciplinas"/>
               </Properties>

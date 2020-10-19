@@ -9,6 +9,7 @@ import Model.DAO.cursosDAO;
 import Model.DAO.disciplinasDAO;
 import javax.swing.table.DefaultTableModel;
 import Model.DAO.alunosDAO;
+import Model.DAO.professoresDAO;
 
 /**
  *
@@ -19,6 +20,7 @@ public class mostrar extends javax.swing.JFrame {
     alunosDAO aDAO = new alunosDAO();
     disciplinasDAO dDAO = new disciplinasDAO();
     cursosDAO cDAO = new cursosDAO();
+    professoresDAO pDAO = new professoresDAO();
     /**
      * Creates new form Alunos
      */
@@ -26,13 +28,14 @@ public class mostrar extends javax.swing.JFrame {
         initComponents();
     }
     
-    void setTitulos (String t,String a,String b) {
+    void setTitulos (String t,String[] columns) {
         setTitle(t);
-        mostrarTable.setModel(new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {a,b}));
-    } 
+        mostrarTable.setModel(new javax.swing.table.DefaultTableModel(new Object [][] {}, columns));
+    }  
     
     public void readAlunosTable (){
-        setTitulos("Alunos","Matricula","Nome");
+        String[] columns = {"Matricula","Nome"};
+        setTitulos("Alunos",columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         aDAO.read().forEach((a) -> {
@@ -44,7 +47,8 @@ public class mostrar extends javax.swing.JFrame {
     }
     
     public void readDisciplinasTable (){
-        setTitulos("Disciplinas","Código","Nome Disc.");
+        String[] columns = {"Código","Nome Disc."};        
+        setTitulos("Disciplinas",columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         dDAO.read().forEach((d) -> {
@@ -56,7 +60,8 @@ public class mostrar extends javax.swing.JFrame {
     }    
 
     public void readCursosTable (){
-        setTitulos("Cursos","Código","Nome curso");
+        String[] columns = {"Código","Nome curso"};            
+        setTitulos("Cursos",columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         cDAO.read().forEach((c) -> {
@@ -67,17 +72,44 @@ public class mostrar extends javax.swing.JFrame {
         });
     }   
     
-    public void readCursosDisciplinasTable (){
-        setTitulos("Cursos/Disciplinas","Nome Curso","Nome Disc.");
+    public void readProfessoresTable (){
+        String[] columns = {"Profº Id","Nome profº","Graduação"};           
+        setTitulos("Professores",columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
-        dDAO.readCursoDisciplina().forEach((c) -> {
+        pDAO.read().forEach((c) -> {
+            modelo.addRow(new Object[]{
+                c.getIdentProf(),
+                c.getNomeProf()
+            });
+        });
+    }      
+    
+    public void readCursosDisciplinasTable (){
+        String[] columns = {"Nome Curso","Nome Disc."};        
+        setTitulos("Cursos/Disciplinas",columns);
+        DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
+        modelo.setNumRows(0);
+        dDAO.readCurso().forEach((c) -> {
             modelo.addRow(new Object[]{
                 c.getNomeCurso(),
                 c.getNomeDisc()
             });
         });
     }  
+    
+    public void readProfessoresDisciplinasTable (){
+        String[] columns = {"Professor","Nome Disc."};        
+        setTitulos("Professores/Disciplinas",columns);
+        DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
+        modelo.setNumRows(0);
+        pDAO.readDisciplinas().forEach((c) -> {
+            modelo.addRow(new Object[]{
+                c.getNomeProf(),
+                c.getNomeDisc()
+            });
+        });
+    }      
 
     
     /**

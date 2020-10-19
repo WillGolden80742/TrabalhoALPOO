@@ -5,7 +5,6 @@
  */
 package Model.DAO;
 
-import Model.DAO.alunosDAO;
 import Model.bean.Curso;
 import ConnectionFactory.ConnectionFactory;
 import java.sql.Connection;

@@ -5,7 +5,6 @@
  */
 package Model.DAO;
 
-import Model.DAO.alunosDAO;
 import Model.bean.Disciplina;
 import ConnectionFactory.ConnectionFactory;
 import java.sql.Connection;
@@ -45,7 +44,7 @@ public class disciplinasDAO {
         return Disciplinas;
    }
     
-    public List<Disciplina> readCursoDisciplina () {
+    public List<Disciplina> readCurso () {
         Connection con = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;

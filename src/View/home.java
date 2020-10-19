@@ -7,13 +7,28 @@ public class home extends javax.swing.JFrame implements ActionListener {
     
     public home() {
         initComponents();
+        listeners ();
     }
-
+    
+    void listeners () {
+        cadCursoItem.addActionListener(this);
+        cadDisciplinaItem.addActionListener(this);
+        cadAlunoItem.addActionListener(this);
+        cadProfessorItem.addActionListener(this);
+        mostrarCursosItem.addActionListener(this);
+        mostrarDisciplinasItem.addActionListener(this);
+        mostrarAlunosItem.addActionListener(this);
+        mostrarProfessoresItem.addActionListener(this);
+        mostrarCursosProfessoresItem.addActionListener(this);
+        mostrarCursosDisciplinasItem.addActionListener(this);
+        mostrarProfessoresDisciplinasItem.addActionListener(this);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem11 = new javax.swing.JMenuItem();
         menuBar = new javax.swing.JMenuBar();
         cadastrarMenu = new javax.swing.JMenu();
         cadCursoItem = new javax.swing.JMenuItem();
@@ -28,9 +43,11 @@ public class home extends javax.swing.JFrame implements ActionListener {
         mostrarSeparador = new javax.swing.JPopupMenu.Separator();
         mostrarCursosProfessoresItem = new javax.swing.JMenuItem();
         mostrarCursosDisciplinasItem = new javax.swing.JMenuItem();
-        mostrarProfessoresDisciplinas = new javax.swing.JMenuItem();
+        mostrarProfessoresDisciplinasItem = new javax.swing.JMenuItem();
         sairMenu = new javax.swing.JMenu();
         sairItem = new javax.swing.JMenuItem();
+
+        jMenuItem11.setText("jMenuItem11");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,8 +88,8 @@ public class home extends javax.swing.JFrame implements ActionListener {
         mostrarCursosDisciplinasItem.setText("Cursos/Disciplinas");
         mostrarMenu.add(mostrarCursosDisciplinasItem);
 
-        mostrarProfessoresDisciplinas.setText("Professores/Disciplinas");
-        mostrarMenu.add(mostrarProfessoresDisciplinas);
+        mostrarProfessoresDisciplinasItem.setText("Professores/Disciplinas");
+        mostrarMenu.add(mostrarProfessoresDisciplinasItem);
 
         menuBar.add(mostrarMenu);
 
@@ -84,18 +101,6 @@ public class home extends javax.swing.JFrame implements ActionListener {
         menuBar.add(sairMenu);
 
         setJMenuBar(menuBar);
-
-        cadCursoItem.addActionListener(this);
-        cadDisciplinaItem.addActionListener(this);
-        cadAlunoItem.addActionListener(this);
-        cadProfessorItem.addActionListener(this);
-        mostrarCursosItem.addActionListener(this);
-        mostrarDisciplinasItem.addActionListener(this);
-        mostrarAlunosItem.addActionListener(this);
-        mostrarProfessoresItem.addActionListener(this);
-        mostrarCursosProfessoresItem.addActionListener(this);
-        mostrarCursosDisciplinasItem.addActionListener(this);
-        mostrarProfessoresDisciplinas.addActionListener(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,12 +134,24 @@ public class home extends javax.swing.JFrame implements ActionListener {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readDisciplinasTable();
-        }      
+        }  
+        if (e.getSource() == mostrarProfessoresItem) {
+            mostrar m = new mostrar();
+            m.setVisible(true);
+            m.readProfessoresTable();
+        }     
+        
         if (e.getSource() == mostrarCursosDisciplinasItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readCursosDisciplinasTable();
-        }         
+        }   
+        
+        if (e.getSource() == mostrarProfessoresDisciplinasItem) {
+            mostrar m = new mostrar();
+            m.setVisible(true);
+            m.readProfessoresDisciplinasTable();
+        }          
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -175,6 +192,7 @@ public class home extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem cadDisciplinaItem;
     private javax.swing.JMenuItem cadProfessorItem;
     private javax.swing.JMenu cadastrarMenu;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem mostrarAlunosItem;
     private javax.swing.JMenuItem mostrarCursosDisciplinasItem;
@@ -182,7 +200,7 @@ public class home extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem mostrarCursosProfessoresItem;
     private javax.swing.JMenuItem mostrarDisciplinasItem;
     private javax.swing.JMenu mostrarMenu;
-    private javax.swing.JMenuItem mostrarProfessoresDisciplinas;
+    private javax.swing.JMenuItem mostrarProfessoresDisciplinasItem;
     private javax.swing.JMenuItem mostrarProfessoresItem;
     private javax.swing.JPopupMenu.Separator mostrarSeparador;
     private javax.swing.JMenuItem sairItem;
