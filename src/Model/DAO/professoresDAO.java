@@ -14,8 +14,7 @@ public class professoresDAO {
     private String NomeProf;
     private String DataNasc;
     private String EspecProf;
-    private String EndProf;
-    
+
     public int getIdentProf() {
         return IdentProf;
     }
