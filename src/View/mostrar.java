@@ -111,6 +111,18 @@ public class mostrar extends javax.swing.JFrame {
         });
     }      
 
+    public void readCursosProfessoresTable (){
+        String[] columns = {"Curso","Professor"};        
+        setTitulos("Cursos/Professores",columns);
+        DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
+        modelo.setNumRows(0);
+        pDAO.readCursos().forEach((c) -> {
+            modelo.addRow(new Object[]{
+                c.getNomeCurso(),
+                c.getNomeProf()
+            });
+        });
+    }         
     
     /**
      * This method is called from within the constructor to initialize the form.

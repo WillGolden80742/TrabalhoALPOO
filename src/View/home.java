@@ -146,12 +146,17 @@ public class home extends javax.swing.JFrame implements ActionListener {
             m.setVisible(true);
             m.readCursosDisciplinasTable();
         }   
-        
+
         if (e.getSource() == mostrarProfessoresDisciplinasItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readProfessoresDisciplinasTable();
-        }          
+        }     
+        if (e.getSource() == mostrarCursosProfessoresItem) {
+            mostrar m = new mostrar();
+            m.setVisible(true);
+            m.readCursosProfessoresTable();
+        }           
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

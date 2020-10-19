@@ -62,5 +62,26 @@ public class professoresDAO {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Professores;
-    }    
+    }
+    
+    public List<Professor> readCursos() {
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Professor> Professores = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("select DISTINCT p.NomeProf, c.nomeCurso from professor as p INNER JOIN disciplina as d on d.IdentProf = p.IdentProf INNER JOIN cursodisc cd on d.CodDisc = cd.codDisc INNER JOIN curso c on cd.codCurso = c.codCurso");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Professor professor = new Professor();
+                professor.setNomeProf(rs.getString("p.NomeProf"));                
+                professor.setNomeCurso(rs.getString("c.nomeCurso"));
+                Professores.add(professor);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Professores;
+    }     
 }
