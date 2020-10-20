@@ -1,16 +1,23 @@
 package View;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class home extends javax.swing.JFrame implements ActionListener {
-    
+
     public home() {
         initComponents();
-        listeners ();
+        listeners();
+        setLocation(400, 100);
     }
-    
-    void listeners () {
+
+    void listeners() {
         cadCursoItem.addActionListener(this);
         cadDisciplinaItem.addActionListener(this);
         cadAlunoItem.addActionListener(this);
@@ -22,8 +29,10 @@ public class home extends javax.swing.JFrame implements ActionListener {
         mostrarCursosProfessoresItem.addActionListener(this);
         mostrarCursosDisciplinasItem.addActionListener(this);
         mostrarProfessoresDisciplinasItem.addActionListener(this);
+        lightItem.addActionListener(this);
+        darkItem.addActionListener(this);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,6 +53,9 @@ public class home extends javax.swing.JFrame implements ActionListener {
         mostrarCursosProfessoresItem = new javax.swing.JMenuItem();
         mostrarCursosDisciplinasItem = new javax.swing.JMenuItem();
         mostrarProfessoresDisciplinasItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        lightItem = new javax.swing.JMenuItem();
+        darkItem = new javax.swing.JMenuItem();
         sairMenu = new javax.swing.JMenu();
         sairItem = new javax.swing.JMenuItem();
 
@@ -93,6 +105,16 @@ public class home extends javax.swing.JFrame implements ActionListener {
 
         menuBar.add(mostrarMenu);
 
+        jMenu1.setText("Tema");
+
+        lightItem.setText("Claro");
+        jMenu1.add(lightItem);
+
+        darkItem.setText("Escuro");
+        jMenu1.add(darkItem);
+
+        menuBar.add(jMenu1);
+
         sairMenu.setText("SAIR");
 
         sairItem.setText("SAIR");
@@ -120,11 +142,11 @@ public class home extends javax.swing.JFrame implements ActionListener {
         if (e.getSource() == sairItem) {
             System.exit(0);
         }
-        if (e.getSource() == mostrarCursosItem) {       
+        if (e.getSource() == mostrarCursosItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readCursosTable();
-        }        
+        }
         if (e.getSource() == mostrarAlunosItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
@@ -134,54 +156,61 @@ public class home extends javax.swing.JFrame implements ActionListener {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readDisciplinasTable();
-        }  
+        }
         if (e.getSource() == mostrarProfessoresItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readProfessoresTable();
-        }     
-        
+        }
+
         if (e.getSource() == mostrarCursosDisciplinasItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readCursosDisciplinasTable();
-        }   
+        }
 
         if (e.getSource() == mostrarProfessoresDisciplinasItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readProfessoresDisciplinasTable();
-        }     
+        }
         if (e.getSource() == mostrarCursosProfessoresItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readCursosProfessoresTable();
-        }           
-    }
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
+        if (e.getSource() == cadProfessorItem) {
+            criarProfessor cP = new criarProfessor();
+            cP.setVisible(true);
+        }
+        
+//      Alterar Temas
+        if (e.getSource() == lightItem) {
+            try {                
+                UIManager.setLookAndFeel(new FlatLightLaf());
+                SwingUtilities.updateComponentTreeUI(this);                 
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
+        }
+        if (e.getSource() == darkItem) {
+            try {
+                UIManager.setLookAndFeel(new FlatDarkLaf());
+                SwingUtilities.updateComponentTreeUI(this);                
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            } catch (Throwable ex) {
+                Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -197,7 +226,10 @@ public class home extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem cadDisciplinaItem;
     private javax.swing.JMenuItem cadProfessorItem;
     private javax.swing.JMenu cadastrarMenu;
+    private javax.swing.JMenuItem darkItem;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem lightItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem mostrarAlunosItem;
     private javax.swing.JMenuItem mostrarCursosDisciplinasItem;
@@ -211,4 +243,5 @@ public class home extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem sairItem;
     private javax.swing.JMenu sairMenu;
     // End of variables declaration//GEN-END:variables
+
 }

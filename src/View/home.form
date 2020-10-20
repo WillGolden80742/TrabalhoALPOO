@@ -80,6 +80,23 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tema"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="lightItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Claro"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="darkItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Escuro"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="sairMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="SAIR"/>
