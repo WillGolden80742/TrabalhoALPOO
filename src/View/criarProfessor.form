@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="especProfGroup">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="tituloProfGroup">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Professor"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="nomeP" min="-2" pref="176" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="BacharelCheckBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="EspecialistaLatoSensuCheckBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="MestradoCheckBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="DoutoradoCheckBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="criarButton" min="-2" pref="120" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cancelarButton" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="RecursosHumanosCheckBox" max="32767" attributes="0"/>
+                              <Component id="PsicologiaCheckBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="DireitoCheckBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="OdontologiaCheckBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="FarmacologiaCheckBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="MedicinaCheckBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="MatematicaCheckBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="InformaticaCheckBox" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="dataNascP" min="-2" pref="115" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nomeP" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="dataNascP" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="BacharelCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="EspecialistaLatoSensuCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="MestradoCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="DoutoradoCheckBox" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="InformaticaCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="MatematicaCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="MedicinaCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FarmacologiaCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="OdontologiaCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="DireitoCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="PsicologiaCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="RecursosHumanosCheckBox" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="criarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="nomeP">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nome :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nasc : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="dataNascP">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="##-##-####" subtype="-1" type="5"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="InformaticaCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Inform&#xe1;tica"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="MatematicaCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Matem&#xe1;tica"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="MedicinaCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Medicina"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="FarmacologiaCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Farmacologia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="OdontologiaCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Odontologia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="DireitoCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Direito"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="PsicologiaCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Psicologia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="RecursosHumanosCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Recursos Humanos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="BacharelCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bacharel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="EspecialistaLatoSensuCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Especialista Lato Sensu"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="MestradoCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mestrado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="DoutoradoCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Doutorado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="criarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CRIAR"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="cancelarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CANCELAR"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

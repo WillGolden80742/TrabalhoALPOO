@@ -34,14 +34,16 @@ public class mostrar extends javax.swing.JFrame {
     }  
     
     public void readAlunosTable (){
-        String[] columns = {"Matricula","Nome"};
+        String[] columns = {"Matricula","Nome","Data nasc","Curso"};
         setTitulos("Alunos",columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         aDAO.read().forEach((a) -> {
             modelo.addRow(new Object[]{
                 a.getMatricula(),
-                a.getNomeAluno()
+                a.getNomeAluno(),
+                a.getDataNascAluno(),                
+                a.getNomeCurso()
             });
         });
     }
@@ -80,7 +82,8 @@ public class mostrar extends javax.swing.JFrame {
         pDAO.read().forEach((c) -> {
             modelo.addRow(new Object[]{
                 c.getIdentProf(),
-                c.getNomeProf()
+                c.getNomeProf(),
+                c.getEspecProf()
             });
         });
     }      

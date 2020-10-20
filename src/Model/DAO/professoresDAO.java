@@ -8,6 +8,7 @@ package Model.DAO;
 import ConnectionFactory.ConnectionFactory;
 import Model.bean.Professor;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,24 @@ import java.util.logging.Logger;
  * @author William
  */
 public class professoresDAO {
-
+    
+    public void create (Professor p) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;    
+        
+        try {
+            stmt = con.prepareStatement("Insert into professor (NomeProf,DataNasc,EspecProf,TituloProf) value (?,?,?,?)");
+            stmt.setString(1,p.getNomeProf());
+            stmt.setString(2,p.getDataNasc());
+            stmt.setString(3,p.getEspecProf());
+            stmt.setString(4,p.getTituloProf());            
+            stmt.executeUpdate();
+            System.out.print("Criado com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public List<Professor> read() {
         Connection con = ConnectionFactory.getConnection();
 
@@ -35,6 +53,7 @@ public class professoresDAO {
                 Professor professor = new Professor();
                 professor.setIdentProf(rs.getInt("IdentProf"));
                 professor.setNomeProf(rs.getString("NomeProf"));
+                professor.setEspecProf(rs.getString("EspecProf"));
                 Professores.add(professor);
             }
         } catch (SQLException ex) {

@@ -12,7 +12,16 @@ package Model.bean;
 public class Aluno extends Disciplina {
     private int matricula;
     private String nomeAluno;
+    private String DataNascAluno;
 
+    public String getDataNascAluno() {
+        return DataNascAluno;
+    }
+
+    public void setDataNascAluno(String DataNascAluno) {
+        this.DataNascAluno = DataNascAluno;
+    }
+    
     public int getMatricula() {
         return matricula;
     }

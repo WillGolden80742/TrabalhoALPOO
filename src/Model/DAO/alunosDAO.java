@@ -28,12 +28,14 @@ public class alunosDAO {
         ResultSet rs = null;
         List <Aluno> Alunos = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from aluno ");
+            stmt = con.prepareStatement("select * from aluno as a inner join curso as c on a.codCurso = c.codCurso ");
             rs = stmt.executeQuery();
             while(rs.next()){
                 Aluno alu = new Aluno();
                 alu.setMatricula(rs.getInt("matricula"));
                 alu.setNomeAluno(rs.getString("nomeAluno"));
+                alu.setNomeCurso(rs.getString("nomeCurso"));
+                alu.setDataNascAluno(rs.getString("DataNascAluno"));
                 Alunos.add(alu);
             }
         } catch (SQLException ex) {

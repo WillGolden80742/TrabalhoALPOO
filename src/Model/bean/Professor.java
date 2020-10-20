@@ -5,6 +5,8 @@
  */
 package Model.bean;
 
+import java.sql.Date;
+
 /**
  *
  * @author William
@@ -15,7 +17,16 @@ public class Professor extends Disciplina {
     private String NomeProf;
     private String DataNasc;
     private String EspecProf;
+    private String TituloProf;
 
+    public String getTituloProf() {
+        return TituloProf;
+    }
+
+    public void setTituloProf(String TituloProf) {
+        this.TituloProf = TituloProf;
+    }
+    
     public int getIdentProf() {
         return IdentProf;
     }
