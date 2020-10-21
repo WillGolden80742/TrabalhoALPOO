@@ -126,7 +126,7 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
         boolean b = true;
         try {
             d.setCargaHoraria(Integer.parseInt(cHoraria.getText()));
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             b = false;
             JOptionPane.showMessageDialog(null, "Digite numero inteiro em carga horária");
         }
