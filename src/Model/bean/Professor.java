@@ -4,17 +4,12 @@
  * and open the template in the editor.
  */
 package Model.bean;
-
-import java.sql.Date;
-
 /**
  *
  * @author William
  */
 public class Professor extends Disciplina {
     
-    private int IdentProf;
-    private String NomeProf;
     private String DataNasc;
     private String EspecProf;
     private String TituloProf;
@@ -25,22 +20,6 @@ public class Professor extends Disciplina {
 
     public void setTituloProf(String TituloProf) {
         this.TituloProf = TituloProf;
-    }
-    
-    public int getIdentProf() {
-        return IdentProf;
-    }
-
-    public void setIdentProf(int IdentProf) {
-        this.IdentProf = IdentProf;
-    }
-
-    public String getNomeProf() {
-        return NomeProf;
-    }
-
-    public void setNomeProf(String NomeProf) {
-        this.NomeProf = NomeProf;
     }
 
     public String getDataNasc() {

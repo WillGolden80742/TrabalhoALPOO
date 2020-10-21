@@ -156,11 +156,13 @@ public class home extends javax.swing.JFrame implements ActionListener {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readDisciplinasTable();
+            m.setSelectedDisciplina();
         }
         if (e.getSource() == mostrarProfessoresItem) {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readProfessoresTable();
+            m.setSelectedProfessor();
         }
 
         if (e.getSource() == mostrarCursosDisciplinasItem) {
@@ -179,8 +181,14 @@ public class home extends javax.swing.JFrame implements ActionListener {
             m.setVisible(true);
             m.readCursosProfessoresTable();
         }
+        
+        if (e.getSource() == cadDisciplinaItem) {
+            editarCriarDisciplina cD = new editarCriarDisciplina();
+            cD.setVisible(true);
+        }        
+        
         if (e.getSource() == cadProfessorItem) {
-            criarProfessor cP = new criarProfessor();
+            editarCriarProfessor cP = new editarCriarProfessor();
             cP.setVisible(true);
         }
         
@@ -212,7 +220,6 @@ public class home extends javax.swing.JFrame implements ActionListener {
             System.err.println("Failed to initialize LaF");
         }
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new home().setVisible(true);

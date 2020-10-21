@@ -15,14 +15,80 @@ import javax.swing.JOptionPane;
  *
  * @author William
  */
-public class criarProfessor extends javax.swing.JFrame implements ActionListener {
+public class editarCriarProfessor extends javax.swing.JFrame implements ActionListener {
 
-   professoresDAO pDAO = new professoresDAO();
-   
-    public criarProfessor() {
+    
+    public editarCriarProfessor() {
         initComponents();
         addGroup();
+        setSaveButton ();
+        setLocation(400,400);
     }
+    
+    professoresDAO pDAO = new professoresDAO();
+    private Professor professor = new Professor();
+    private boolean selectedProfessor = false;
+
+    private boolean isSelectedProfessor() {
+        return selectedProfessor;
+    }
+
+    private void setSelectedProfessor() {
+        this.selectedProfessor = true;
+    }
+    
+    public Professor getProfessor() {
+        return professor;
+    }
+     
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+        nomeP.setText(professor.getNomeProf());
+        dataNascP.setText(professor.getDataNasc());
+        switch (professor.getTituloProf()) {
+            case "Bacharel":
+                BacharelCheckBox.setSelected(true);
+                break;
+            case "Especialista Lato Sensu":
+                EspecialistaLatoSensuCheckBox.setSelected(true);
+                break;  
+            case "Mestrado":
+                EspecialistaLatoSensuCheckBox.setSelected(true);
+                break; 
+            case "Doutorado":
+                EspecialistaLatoSensuCheckBox.setSelected(true);
+                break;                                    
+        }
+        switch (professor.getEspecProf()) {
+            case "Informática":
+                InformaticaCheckBox.setSelected(true);
+                break;
+            case "Matemática":
+                MatematicaCheckBox.setSelected(true);
+                break;  
+            case "Medicina":
+                MedicinaCheckBox.setSelected(true);
+                break; 
+            case "Farmacologia":
+                FarmacologiaCheckBox.setSelected(true);
+                break;   
+            case "Odontologia":
+                OdontologiaCheckBox.setSelected(true);
+                break;   
+            case "Direito":
+                DireitoCheckBox.setSelected(true);
+                break;    
+            case "Psicologia":
+                PsicologiaCheckBox.setSelected(true);
+                break;   
+            case "Recursos Humanos":
+                RecursosHumanosCheckBox.setSelected(true);
+                break;                   
+        }        
+        setSelectedProfessor();
+        setSaveButton();
+    }
+
 
     void addGroup() {
         especProfGroup.add(InformaticaCheckBox);
@@ -50,21 +116,29 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
         MestradoCheckBox.addActionListener(this);
         tituloProfGroup.add(DoutoradoCheckBox);
         DoutoradoCheckBox.addActionListener(this);
-        criarButton.addActionListener(this);
+        salvarButton.addActionListener(this);
+    }  
+    
+    void setSaveButton () {
+        if(isSelectedProfessor() == true) {
+            salvarButton.setText("SALVAR");
+        } else {
+            salvarButton.setText("CRIAR");        
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == criarButton){
-            Criar();
+        if (e.getSource() == salvarButton) {
+            Salvar();
         }
     }
 
-    void Criar() {
+    void Salvar() {
         Professor p = new Professor();
         p.setNomeProf(nomeP.getText());
         p.setDataNasc(dataNascP.getText());
-        boolean b=true;
+        boolean b = true;
         // -------------------------------------------        
         if (BacharelCheckBox.isSelected() == true) {
             p.setTituloProf(BacharelCheckBox.getText());
@@ -76,7 +150,7 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
             p.setTituloProf(DoutoradoCheckBox.getText());
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um titulo para o professor");
-            b=false;
+            b = false;
         }
         // -----------------------------------       
         if (InformaticaCheckBox.isSelected() == true) {
@@ -96,12 +170,18 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
         } else if (RecursosHumanosCheckBox.isSelected() == true) {
             p.setEspecProf(RecursosHumanosCheckBox.getText());
         } else {
-            b=false;
+            b = false;
             JOptionPane.showMessageDialog(null, "Selecione uma especialidade para o professor");
         }
-        if(b){
-            pDAO.create(p);
-        }
+        if (b) {
+            if (isSelectedProfessor()) {
+                p.setIdentProf(getProfessor().getIdentProf());
+                pDAO.update(p);
+            } else {
+                pDAO.create(p);                
+            }
+            statusProf.setText(pDAO.getProfessoresStatus());
+        } 
     }
 
     @SuppressWarnings("unchecked")
@@ -126,8 +206,9 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
         EspecialistaLatoSensuCheckBox = new javax.swing.JCheckBox();
         MestradoCheckBox = new javax.swing.JCheckBox();
         DoutoradoCheckBox = new javax.swing.JCheckBox();
-        criarButton = new javax.swing.JButton();
+        salvarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
+        statusProf = new javax.swing.JLabel();
 
         setTitle("Professor");
         setResizable(false);
@@ -166,9 +247,14 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
 
         DoutoradoCheckBox.setText("Doutorado");
 
-        criarButton.setText("CRIAR");
+        salvarButton.setText("SALVAR");
 
         cancelarButton.setText("CANCELAR");
+
+        statusProf.setBackground(new java.awt.Color(51, 153, 0));
+        statusProf.setFont(new java.awt.Font("Arial", 3, 10)); // NOI18N
+        statusProf.setForeground(new java.awt.Color(51, 153, 0));
+        statusProf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,7 +262,7 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
@@ -189,18 +275,20 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
                             .addComponent(EspecialistaLatoSensuCheckBox)
                             .addComponent(MestradoCheckBox)
                             .addComponent(DoutoradoCheckBox)))
-                    .addComponent(criarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statusProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(RecursosHumanosCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PsicologiaCheckBox)
-                        .addComponent(DireitoCheckBox)
-                        .addComponent(OdontologiaCheckBox)
-                        .addComponent(FarmacologiaCheckBox)
-                        .addComponent(MedicinaCheckBox)
-                        .addComponent(MatematicaCheckBox)
-                        .addComponent(InformaticaCheckBox))
+                    .addComponent(RecursosHumanosCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PsicologiaCheckBox)
+                    .addComponent(DireitoCheckBox)
+                    .addComponent(OdontologiaCheckBox)
+                    .addComponent(FarmacologiaCheckBox)
+                    .addComponent(MedicinaCheckBox)
+                    .addComponent(MatematicaCheckBox)
+                    .addComponent(InformaticaCheckBox)
                     .addComponent(cancelarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addComponent(dataNascP))
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -240,11 +328,13 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
                         .addComponent(PsicologiaCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RecursosHumanosCheckBox)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(criarButton)
-                    .addComponent(cancelarButton))
-                .addContainerGap())
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(salvarButton)
+                        .addComponent(cancelarButton))
+                    .addComponent(statusProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,12 +355,13 @@ public class criarProfessor extends javax.swing.JFrame implements ActionListener
     private javax.swing.JCheckBox PsicologiaCheckBox;
     private javax.swing.JCheckBox RecursosHumanosCheckBox;
     private javax.swing.JButton cancelarButton;
-    private javax.swing.JButton criarButton;
     private javax.swing.JFormattedTextField dataNascP;
     private javax.swing.ButtonGroup especProfGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField nomeP;
+    private javax.swing.JButton salvarButton;
+    private javax.swing.JLabel statusProf;
     private javax.swing.ButtonGroup tituloProfGroup;
     // End of variables declaration//GEN-END:variables
 

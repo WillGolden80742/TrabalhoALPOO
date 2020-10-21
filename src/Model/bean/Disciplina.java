@@ -11,11 +11,29 @@ package Model.bean;
  */
 public class Disciplina extends Curso {
     
+    private String NomeProf;
+    private int IdentProf; 
     int CodDisc;
     String NomeDisc;
     int CargaHoraria;	
-    int AulasSemana;
+    int AulasSemana;    
 
+    public int getIdentProf() {
+        return IdentProf;
+    }
+
+    public void setIdentProf(int IdentProf) {
+        this.IdentProf = IdentProf;
+    }
+
+    public String getNomeProf() {
+        return NomeProf;
+    }
+
+    public void setNomeProf(String NomeProf) {
+        this.NomeProf = NomeProf;
+    }
+    
     public int getCodDisc() {
         return CodDisc;
     }

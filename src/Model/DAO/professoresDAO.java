@@ -8,7 +8,6 @@ package Model.DAO;
 import ConnectionFactory.ConnectionFactory;
 import Model.bean.Professor;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,34 @@ import java.util.logging.Logger;
  * @author William
  */
 public class professoresDAO {
+
+    private String professoresStatus = "";
+
+    public String getProfessoresStatus() {
+        return professoresStatus;
+    }
+
+    public void setProfessoresStatus(String professoresStatus) {
+        this.professoresStatus = professoresStatus;
+    }
+  
+    public void update (Professor p) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;    
+        
+        try {
+            stmt = con.prepareStatement("update professor set NomeProf = ?, DataNasc = ?, EspecProf = ?, TituloProf = ? where IdentProf = ?");
+            stmt.setString(1,p.getNomeProf());
+            stmt.setString(2,p.getDataNasc());
+            stmt.setString(3,p.getEspecProf());
+            stmt.setString(4,p.getTituloProf());      
+            stmt.setInt(5,p.getIdentProf());             
+            stmt.executeUpdate();
+            setProfessoresStatus("Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void create (Professor p) {
         Connection con = ConnectionFactory.getConnection();
@@ -34,11 +61,11 @@ public class professoresDAO {
             stmt.setString(3,p.getEspecProf());
             stmt.setString(4,p.getTituloProf());            
             stmt.executeUpdate();
-            System.out.print("Criado com sucesso!");
+            setProfessoresStatus("Criado com sucesso!");
         } catch (SQLException ex) {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }    
     
     public List<Professor> read() {
         Connection con = ConnectionFactory.getConnection();
@@ -61,6 +88,28 @@ public class professoresDAO {
         }
         return Professores;
     }
+    
+    public Professor read(int id) {
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Professor professor = new Professor();
+        try {
+            stmt = con.prepareStatement("select * from professor where IdentProf = "+id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                professor.setIdentProf(rs.getInt("IdentProf"));
+                professor.setNomeProf(rs.getString("NomeProf"));
+                professor.setDataNasc(rs.getString("DataNasc"));
+                professor.setEspecProf(rs.getString("EspecProf"));     
+                professor.setTituloProf(rs.getString("TituloProf"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return professor;
+    }    
     
     public List<Professor> readDisciplinas() {
         Connection con = ConnectionFactory.getConnection();
