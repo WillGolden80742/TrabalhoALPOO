@@ -30,17 +30,10 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
         setCursosList();
     }
 
-    void setCursosSelectedList() {
-        cursoComboBox.removeAllItems();
-        cList.forEach((p) -> {
-            cursoComboBox.addItem(p.getNomeCurso());
-        });
-    }
-
     void setCursosList() {
-        String[] cursoArr = {"Analise e desenvolvimento de sistemas", "Administração", "administração pública", "Arquitetura e urbanismo", "Artes visuais", "Banco de dados", "Biomedicina", "Ciência de dados", "Ciências biológicas", "Ciências contábeis", "Ciências da computação", "Ciências da natureza", "Ciências econômicas", "Ciências exatas", "Ciências humanas", "Comércio exterior", "Computação", "Comunicação institucional", "Cozinha contemporânea", "Defesa cibernética", "Design de moda", "Design gráfico", "Direito", "Educação física", "Enfermagem", "Engenharia ambiental e sanitária", "Engenharia civil", "Engenharia de controle e automação", "Engenharia de petróleo", "Engenharia de produção", "Engenharia de software", "Engenharia elétrica", "Engenharia mecânica", "Estética e cosmética", "Farmácia", "Filosofia", "Física", "Fisioterapia", "Formacão pedagógica", "Gastronomia", "Geografia", "Gerontologia - bem estar e educação", "Gestão ambiental", "Gestão comercial", "Gestão da produção industrial", "Gestão da qualidade", "Gestão da tecnologia da informação", "Gestão de recursos humanos", "Gestão de segurança privada", "Gestão de turismo", "Gestão e empreendedorismo", "Gestão financeira", "Gestão hospitalar", "Gestão pública", "História", "Investigação forense e perícia criminal", "Jogos digitais", "Jornalismo", "Letras - espanhol", "Letras - espanhol", "Letras - espanhol", "Letras - inglês", "Letras - inglês", "Letras - inglês", "Letras - libras - língua portuguesa", "Letras - língua portuguesa", "Letras - língua portuguesa e libras", "Letras - português", "Logística", "Marketing", "Matemática", "Mediação", "Negócios imobiliários", "Nutrição", "Odontologia cirurgião dentista", "Pedagogia", "Pedagogia", "Processos escolares", "Processos gerenciais", "Psicologia", "Publicidade e propaganda", "Química", "Radiologia", "Redes de computadores", "Relações internacionais", "Secretariado executivo", "Segurança no trabalho", "Segurança pública", "Serviço social", "Sistemas de informação", "Sistemas para internet", "Sociologia", "Tecnologias educacionais", "Teologia", "Turismo"};
-        for (int i = 0; i < cursoArr.length; i++) {
-            cursoComboBox.addItem(cursoArr[i]);
+        String[] cursoArr = {"Analise e desenvolvimento de sistemas", "Administração", "Administração pública", "Arquitetura e urbanismo", "Artes visuais", "Banco de dados", "Biomedicina", "Ciência de dados", "Ciências biológicas", "Ciências contábeis", "Ciências da computação", "Ciências da natureza", "Ciências econômicas", "Ciências exatas", "Ciências humanas", "Comércio exterior", "Computação", "Comunicação institucional", "Cozinha contemporânea", "Defesa cibernética", "Design de moda", "Design gráfico", "Direito", "Educação física", "Enfermagem", "Engenharia ambiental e sanitária", "Engenharia civil", "Engenharia de controle e automação", "Engenharia de petróleo", "Engenharia de produção", "Engenharia de software", "Engenharia elétrica", "Engenharia mecânica", "Estética e cosmética", "Farmácia", "Filosofia", "Física", "Fisioterapia", "Formacão pedagógica", "Gastronomia", "Geografia", "Gerontologia - bem estar e educação", "Gestão ambiental", "Gestão comercial", "Gestão da produção industrial", "Gestão da qualidade", "Gestão da tecnologia da informação", "Gestão de recursos humanos", "Gestão de segurança privada", "Gestão de turismo", "Gestão e empreendedorismo", "Gestão financeira", "Gestão hospitalar", "Gestão pública", "História", "Investigação forense e perícia criminal", "Jogos digitais", "Jornalismo", "Letras - espanhol", "Letras - espanhol", "Letras - espanhol", "Letras - inglês", "Letras - inglês", "Letras - inglês", "Letras - libras - língua portuguesa", "Letras - língua portuguesa", "Letras - língua portuguesa e libras", "Letras - português", "Logística", "Marketing", "Matemática", "Mediação", "Negócios imobiliários", "Nutrição", "Odontologia cirurgião dentista", "Pedagogia", "Pedagogia", "Processos escolares", "Processos gerenciais", "Psicologia", "Publicidade e propaganda", "Química", "Radiologia", "Redes de computadores", "Relações internacionais", "Secretariado executivo", "Segurança no trabalho", "Segurança pública", "Serviço social", "Sistemas de informação", "Sistemas para internet", "Sociologia", "Tecnologias educacionais", "Teologia", "Turismo"};
+        for (String cursoArr1 : cursoArr) {
+            cursoComboBox.addItem(cursoArr1);
         }
     }
 
@@ -81,14 +74,8 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
                 CursoSuperiorCheckBox.setSelected(true);
                 break;
         }
-        setCursosSelectedList();
-        int i = 0;
-        for (Curso c : cList) {
-            if (c.getCodCurso() == curso.getCodCurso()) {
-                cursoComboBox.setSelectedIndex(i);
-            }
-            i++;
-        }
+        idCurso.setText("Id : "+curso.getCodCurso());
+        cursoComboBox.setSelectedIndex(0);
         setSelectedCurso();
         setSaveButton();
     }
@@ -130,7 +117,14 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
     void Salvar() {
         Curso d = new Curso();
         boolean b = true;
-        d.setNomeCurso((String) cursoComboBox.getSelectedItem());
+        if (cursoComboBox.getSelectedIndex()!=0) {
+            d.setNomeCurso((String) cursoComboBox.getSelectedItem());
+        } else if (!isSelectedCurso()) {
+            b = false;
+            JOptionPane.showMessageDialog(null, "Selecione um curso"); 
+        } else {
+            d.setNomeCurso(curso.getNomeCurso());
+        }
         try {
             d.setCargaHoraria(Integer.parseInt(cHoraria.getText()));
             d.setCodInstituto(Integer.parseInt(cInst.getText()));
@@ -183,8 +177,9 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
         cHorariaLabel = new javax.swing.JLabel();
         cInst = new javax.swing.JTextField();
         CursoSuperiorCheckBox = new javax.swing.JCheckBox();
+        idCurso = new javax.swing.JLabel();
 
-        setTitle("Disciplina");
+        setTitle("Curso");
         setResizable(false);
 
         salvarButton.setText("SALVAR");
@@ -220,6 +215,8 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
         cHorariaLabel.setText("Carga Horaria : ");
 
         CursoSuperiorCheckBox.setText("Curso Superior");
+
+        idCurso.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -263,16 +260,22 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
                                 .addGap(3, 3, 3)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cInst, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(cHoraria))
+                            .addComponent(cHoraria)
+                            .addComponent(idCurso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(aulaLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BacharelCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(aulaLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BacharelCheckBox))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(idCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
                 .addComponent(EspecialistaLatoSensuCheckBox)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -286,7 +289,7 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
                         .addComponent(cHorariaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DoutoradoCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CursoSuperiorCheckBox)))
                 .addGap(7, 7, 7)
                 .addComponent(cursoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,6 +325,7 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
     private javax.swing.JLabel cInstLabel;
     private javax.swing.JButton cancelarButton;
     private javax.swing.JComboBox<String> cursoComboBox;
+    private javax.swing.JLabel idCurso;
     private javax.swing.JButton salvarButton;
     private javax.swing.JLabel statusCurso;
     private javax.swing.ButtonGroup tipoCursoGroup;

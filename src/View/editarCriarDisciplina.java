@@ -137,6 +137,8 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
         try {
             d.setIdentProf(pList.get(profComboBox.getSelectedIndex() - 1).getIdentProf());
         } catch (Exception ex) {
+            b = false;
+            JOptionPane.showMessageDialog(null, "Selecione professor!"); 
         }
         // -----------------------------------       
         if (umCheckBox.isSelected() == true) {

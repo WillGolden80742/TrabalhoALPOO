@@ -7,6 +7,7 @@ package Model.DAO;
 
 import ConnectionFactory.ConnectionFactory;
 import Model.bean.Professor;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,42 +32,42 @@ public class professoresDAO {
     public void setProfessoresStatus(String professoresStatus) {
         this.professoresStatus = professoresStatus;
     }
-  
-    public void update (Professor p) {
+
+    public void update(Professor p) {
         Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt;    
-        
+        PreparedStatement stmt;
+
         try {
             stmt = con.prepareStatement("update professor set NomeProf = ?, DataNasc = ?, EspecProf = ?, TituloProf = ? where IdentProf = ?");
-            stmt.setString(1,p.getNomeProf());
-            stmt.setString(2,p.getDataNasc());
-            stmt.setString(3,p.getEspecProf());
-            stmt.setString(4,p.getTituloProf());      
-            stmt.setInt(5,p.getIdentProf());             
+            stmt.setString(1, p.getNomeProf());
+            stmt.setString(2, p.getDataNasc());
+            stmt.setString(3, p.getEspecProf());
+            stmt.setString(4, p.getTituloProf());
+            stmt.setInt(5, p.getIdentProf());
             stmt.executeUpdate();
             setProfessoresStatus("Atualizado com sucesso!");
         } catch (SQLException ex) {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void create (Professor p) {
+
+    public void create(Professor p) {
         Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt;    
-        
+        PreparedStatement stmt;
+
         try {
             stmt = con.prepareStatement("Insert into professor (NomeProf,DataNasc,EspecProf,TituloProf) value (?,?,?,?)");
-            stmt.setString(1,p.getNomeProf());
-            stmt.setString(2,p.getDataNasc());
-            stmt.setString(3,p.getEspecProf());
-            stmt.setString(4,p.getTituloProf());            
+            stmt.setString(1, p.getNomeProf());
+            stmt.setString(2, p.getDataNasc());
+            stmt.setString(3, p.getEspecProf());
+            stmt.setString(4, p.getTituloProf());
             stmt.executeUpdate();
             setProfessoresStatus("Criado com sucesso!");
         } catch (SQLException ex) {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
+    }
+
     public List<Professor> read() {
         Connection con = ConnectionFactory.getConnection();
 
@@ -88,7 +89,7 @@ public class professoresDAO {
         }
         return Professores;
     }
-    
+
     public Professor read(int id) {
         Connection con = ConnectionFactory.getConnection();
 
@@ -96,21 +97,21 @@ public class professoresDAO {
         ResultSet rs = null;
         Professor professor = new Professor();
         try {
-            stmt = con.prepareStatement("select * from professor where IdentProf = "+id);
+            stmt = con.prepareStatement("select * from professor where IdentProf = " + id);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 professor.setIdentProf(rs.getInt("IdentProf"));
                 professor.setNomeProf(rs.getString("NomeProf"));
                 professor.setDataNasc(rs.getString("DataNasc"));
-                professor.setEspecProf(rs.getString("EspecProf"));     
+                professor.setEspecProf(rs.getString("EspecProf"));
                 professor.setTituloProf(rs.getString("TituloProf"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return professor;
-    }    
-    
+    }
+
     public List<Professor> readDisciplinas() {
         Connection con = ConnectionFactory.getConnection();
 
@@ -122,7 +123,7 @@ public class professoresDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Professor professor = new Professor();
-                professor.setNomeProf(rs.getString("p.NomeProf"));                
+                professor.setNomeProf(rs.getString("p.NomeProf"));
                 professor.setNomeDisc(rs.getString("d.nomeDisc"));
                 Professores.add(professor);
             }
@@ -131,7 +132,7 @@ public class professoresDAO {
         }
         return Professores;
     }
-    
+
     public List<Professor> readCursos() {
         Connection con = ConnectionFactory.getConnection();
 
@@ -143,7 +144,7 @@ public class professoresDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Professor professor = new Professor();
-                professor.setNomeProf(rs.getString("p.NomeProf"));                
+                professor.setNomeProf(rs.getString("p.NomeProf"));
                 professor.setNomeCurso(rs.getString("c.nomeCurso"));
                 Professores.add(professor);
             }
@@ -151,5 +152,21 @@ public class professoresDAO {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Professores;
-    }     
+    }
+
+    public void delete(int id) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("delete from professor where IdentProf  = " + id);
+            stmt.executeUpdate();
+            setProfessoresStatus("Deletado com sucesso!");
+        } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException ex1) {
+            setProfessoresStatus("Nâo é possivel apagar, pois há dependentes de professor");
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

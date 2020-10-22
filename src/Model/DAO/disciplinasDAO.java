@@ -7,6 +7,7 @@ package Model.DAO;
 
 import Model.bean.Disciplina;
 import ConnectionFactory.ConnectionFactory;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -130,5 +131,21 @@ public class disciplinasDAO {
             Logger.getLogger(alunosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Disciplinas;
-    }    
+    }  
+    
+    public void delete(int id) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("delete from disciplina where codDisc   = " + id);
+            stmt.executeUpdate();
+            setDisciplinasStatus("Deletado com sucesso!");
+        } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException ex1) {
+            setDisciplinasStatus("Nâo é possivel apagar, pois há dependentes de disciplina");
+        } catch (SQLException ex) {
+            Logger.getLogger(disciplinasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

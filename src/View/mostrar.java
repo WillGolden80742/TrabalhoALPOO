@@ -27,23 +27,26 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
     private boolean selectedProfessor = false;
     private boolean selectedDisciplina = false;
     private boolean selectedCurso = false;
-    
+    private boolean selectedAluno = false;
+
     public mostrar() {
         initComponents();
         listener();
         hideTools();
     }
-    void hideTools () {
+
+    void hideTools() {
         editarButton.setVisible(false);
         atualizarButton.setVisible(false);
         deletarButton.setVisible(false);
-    }    
-    
+    }
+
     void listener() {
         editarButton.addActionListener(this);
         atualizarButton.addActionListener(this);
-    }    
-    
+        deletarButton.addActionListener(this);
+    }
+
     public boolean isSelectedDisciplina() {
         return selectedDisciplina;
     }
@@ -52,16 +55,16 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
         this.selectedDisciplina = true;
         editarButton.setVisible(true);
         atualizarButton.setVisible(true);
-        deletarButton.setVisible(true);            
-    }    
-    
+        deletarButton.setVisible(true);
+    }
+
     public void setSelectedProfessor() {
         this.selectedProfessor = true;
         editarButton.setVisible(true);
         atualizarButton.setVisible(true);
-        deletarButton.setVisible(true);       
-    } 
- 
+        deletarButton.setVisible(true);
+    }
+
     public boolean isSelectedProfessor() {
         return selectedProfessor;
     }
@@ -74,9 +77,20 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
         this.selectedCurso = true;
         editarButton.setVisible(true);
         atualizarButton.setVisible(true);
-        deletarButton.setVisible(true);         
-    }    
-    
+        deletarButton.setVisible(true);
+    }
+
+    public boolean isSelectedAluno() {
+        return selectedAluno;
+    }
+
+    public void setSelectedAluno() {
+        this.selectedAluno = true;
+        editarButton.setVisible(true);
+        atualizarButton.setVisible(true);
+        deletarButton.setVisible(true);
+    }
+
     void setTitulos(String t, String[] columns) {
         setTitle(t);
         mostrarTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columns));
@@ -84,7 +98,7 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
 
     public void readAlunosTable() {
         String[] columns = {"Matricula", "Nome", "Data nasc", "Curso"};
-        setTitulos("Alunos", columns);
+        setTitulos("Aluno", columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         aDAO.read().forEach((a) -> {
@@ -99,7 +113,7 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
 
     public void readDisciplinasTable() {
         String[] columns = {"Código", "Nome Disc."};
-        setTitulos("Disciplinas", columns);
+        setTitulos("Disciplina", columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         dDAO.read().forEach((d) -> {
@@ -112,7 +126,7 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
 
     public void readCursosTable() {
         String[] columns = {"Código", "Nome curso"};
-        setTitulos("Cursos", columns);
+        setTitulos("Curso", columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         cDAO.read().forEach((c) -> {
@@ -125,7 +139,7 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
 
     public void readProfessoresTable() {
         String[] columns = {"Profº Id", "Nome profº", "Graduação"};
-        setTitulos("Professores", columns);
+        setTitulos("Professor", columns);
         DefaultTableModel modelo = (DefaultTableModel) mostrarTable.getModel();
         modelo.setNumRows(0);
         pDAO.read().forEach((c) -> {
@@ -258,10 +272,43 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
             }
             if (selectedDisciplina) {
                 readDisciplinasTable();
-            }   
+            }
             if (selectedCurso) {
                 readCursosTable();
-            }              
+            }
+            if (selectedAluno) {
+                readAlunosTable();
+            }
+        }
+        if (e.getSource() == deletarButton) {
+            try {
+                int id = (int) mostrarTable.getValueAt(mostrarTable.getSelectedRow(), 0);
+                int answer = JOptionPane.showConfirmDialog(null, "Realmente desejar excluir esse "+getTitle()+" ?");
+                if (answer == 0) {
+                    if (selectedProfessor) {
+                        pDAO.delete(id);
+                        JOptionPane.showMessageDialog(null, pDAO.getProfessoresStatus());
+                        readProfessoresTable();
+                    }
+                    if (selectedDisciplina) {
+                        dDAO.delete(id);
+                        JOptionPane.showMessageDialog(null, dDAO.getDisciplinasStatus());
+                        readDisciplinasTable();
+                    }
+                    if (selectedCurso) {
+                        cDAO.delete(id);
+                        JOptionPane.showMessageDialog(null, cDAO.getCursosStatus());
+                        readCursosTable();
+                    }
+                    if (selectedAluno) {
+                        aDAO.delete(id);
+                        JOptionPane.showMessageDialog(null, aDAO.getAlunosStatus());
+                        readAlunosTable();
+                    }
+                }
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
+                JOptionPane.showMessageDialog(null, "Selecione algum da lista");
+            }
         }
         if (e.getSource() == editarButton) {
             try {
@@ -275,12 +322,17 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
                     editarCriarDisciplina d = new editarCriarDisciplina();
                     d.setVisible(true);
                     d.setDisciplina(dDAO.read(id));
-                } 
+                }
                 if (selectedCurso) {
                     editarCriarCurso c = new editarCriarCurso();
                     c.setVisible(true);
                     c.setCurso(cDAO.read(id));
-                }                    
+                }
+                if (selectedAluno) {
+                    editarCriarAluno a = new editarCriarAluno();
+                    a.setVisible(true);
+                    a.setCurso(aDAO.read(id));
+                }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(null, "Selecione algum da lista");
             }

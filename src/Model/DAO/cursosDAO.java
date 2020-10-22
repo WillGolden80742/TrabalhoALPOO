@@ -7,6 +7,7 @@ package Model.DAO;
 
 import Model.bean.Curso;
 import ConnectionFactory.ConnectionFactory;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -109,4 +110,19 @@ public class cursosDAO {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void delete(int id) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("delete from curso where codCurso = " + id);
+            stmt.executeUpdate();
+            setCursosStatus("Deletado com sucesso!");
+        } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException ex1) {
+            setCursosStatus("Nâo é possivel apagar, pois há dependentes de curso");
+        } catch (SQLException ex) {
+            Logger.getLogger(cursosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
 }
