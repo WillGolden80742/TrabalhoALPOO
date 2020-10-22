@@ -102,6 +102,7 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
         aulasSemanaisGroup.add(seisCheckBox);
         seisCheckBox.addActionListener(this);
         salvarButton.addActionListener(this);
+        cancelarButton.addActionListener(this);
         //  --------------------------------------------------------             
     }
 
@@ -118,6 +119,9 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
         if (e.getSource() == salvarButton) {
             Salvar();
         }
+        if (e.getSource() == cancelarButton) {
+            dispose();
+        }        
     }
 
     void Salvar() {
@@ -167,7 +171,6 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
     private void initComponents() {
 
         aulasSemanaisGroup = new javax.swing.ButtonGroup();
-        tituloProfGroup = new javax.swing.ButtonGroup();
         nomeD = new javax.swing.JTextField();
         umCheckBox = new javax.swing.JCheckBox();
         doisCheckBox = new javax.swing.JCheckBox();
@@ -341,7 +344,6 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
     private javax.swing.JButton salvarButton;
     private javax.swing.JCheckBox seisCheckBox;
     private javax.swing.JLabel statusDisc;
-    private javax.swing.ButtonGroup tituloProfGroup;
     private javax.swing.JCheckBox tresCheckBox;
     private javax.swing.JCheckBox umCheckBox;
     // End of variables declaration//GEN-END:variables

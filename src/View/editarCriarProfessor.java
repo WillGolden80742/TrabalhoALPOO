@@ -53,10 +53,10 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                 EspecialistaLatoSensuCheckBox.setSelected(true);
                 break;  
             case "Mestrado":
-                EspecialistaLatoSensuCheckBox.setSelected(true);
+                MestradoCheckBox.setSelected(true);
                 break; 
             case "Doutorado":
-                EspecialistaLatoSensuCheckBox.setSelected(true);
+                DoutoradoCheckBox.setSelected(true);
                 break;                                    
         }
         switch (professor.getEspecProf()) {
@@ -117,6 +117,7 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         tituloProfGroup.add(DoutoradoCheckBox);
         DoutoradoCheckBox.addActionListener(this);
         salvarButton.addActionListener(this);
+        cancelarButton.addActionListener(this);
     }  
     
     void setSaveButton () {
@@ -131,6 +132,9 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == salvarButton) {
             Salvar();
+        }
+        if (e.getSource() == cancelarButton) {
+            dispose();
         }
     }
 

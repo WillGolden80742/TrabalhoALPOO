@@ -146,6 +146,7 @@ public class home extends javax.swing.JFrame implements ActionListener {
             mostrar m = new mostrar();
             m.setVisible(true);
             m.readCursosTable();
+            m.setSelectedCurso();
         }
         if (e.getSource() == mostrarAlunosItem) {
             mostrar m = new mostrar();
@@ -181,6 +182,11 @@ public class home extends javax.swing.JFrame implements ActionListener {
             m.setVisible(true);
             m.readCursosProfessoresTable();
         }
+        
+        if (e.getSource() == cadCursoItem) {
+            editarCriarCurso cC = new editarCriarCurso();
+            cC.setVisible(true);
+        } 
         
         if (e.getSource() == cadDisciplinaItem) {
             editarCriarDisciplina cD = new editarCriarDisciplina();

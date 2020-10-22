@@ -4,8 +4,6 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="aulasSemanaisGroup">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="tituloProfGroup">
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="title" type="java.lang.String" value="Disciplina"/>

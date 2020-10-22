@@ -22,6 +22,38 @@ import java.util.logging.Logger;
  */
 public class cursosDAO {
 
+    private String CursosStatus = "";
+
+    public String getCursosStatus() {
+        return CursosStatus;
+    }
+
+    public void setCursosStatus(String CursosStatus) {
+        this.CursosStatus = CursosStatus;
+    }
+    
+    public Curso read(int id) {
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Curso curso = new Curso();
+        try {
+            stmt = con.prepareStatement("select * from Curso where codCurso = "+id+" ORDER by nomeCurso");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                curso.setCodCurso(rs.getInt("CodCurso"));
+                curso.setNomeCurso(rs.getString("NomeCurso"));
+                curso.setTipoCurso(rs.getString("tipoCurso"));
+                curso.setCargaHoraria(rs.getInt("cargaHoraria"));
+                curso.setCodInstituto(rs.getInt("codInstituto"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(cursosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return curso;
+    }   
+
     public List<Curso> read() {
         Connection con = ConnectionFactory.getConnection();
 
@@ -29,7 +61,7 @@ public class cursosDAO {
         ResultSet rs = null;
         List<Curso> Cursos = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from Curso");
+            stmt = con.prepareStatement("select * from Curso ORDER by nomeCurso");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Curso curso = new Curso();
@@ -42,5 +74,39 @@ public class cursosDAO {
         }
         return Cursos;
     }
-    
+
+    public void update(Curso c) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("update curso set nomeCurso = ?, tipoCurso = ?, cargaHoraria = ?, codInstituto = ? where CodCurso = ?");
+            stmt.setString(1, c.getNomeCurso());
+            stmt.setString(2, c.getTipoCurso());
+            stmt.setInt(3, c.getCargaHoraria());
+            stmt.setInt(4, c.getCodInstituto());
+            stmt.setInt(5, c.getCodCurso());
+            stmt.executeUpdate();
+            setCursosStatus("Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void create(Curso c) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt;
+
+        try {
+            stmt = con.prepareStatement("Insert into curso (nomeCurso,tipoCurso,cargaHoraria,codInstituto) value (?,?,?,?)");
+            stmt.setString(1, c.getNomeCurso());
+            stmt.setString(2, c.getTipoCurso());
+            stmt.setInt(3, c.getCargaHoraria());
+            stmt.setInt(4, c.getCodInstituto());
+            stmt.executeUpdate();
+            setCursosStatus("Criado com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

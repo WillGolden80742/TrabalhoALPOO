@@ -26,7 +26,8 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
     professoresDAO pDAO = new professoresDAO();
     private boolean selectedProfessor = false;
     private boolean selectedDisciplina = false;
-
+    private boolean selectedCurso = false;
+    
     public mostrar() {
         initComponents();
         listener();
@@ -36,6 +37,11 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
         editarButton.setVisible(false);
         atualizarButton.setVisible(false);
         deletarButton.setVisible(false);
+    }    
+    
+    void listener() {
+        editarButton.addActionListener(this);
+        atualizarButton.addActionListener(this);
     }    
     
     public boolean isSelectedDisciplina() {
@@ -59,12 +65,18 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
     public boolean isSelectedProfessor() {
         return selectedProfessor;
     }
-    
-    void listener() {
-        editarButton.addActionListener(this);
-        atualizarButton.addActionListener(this);
+
+    public boolean isSelectedCurso() {
+        return selectedCurso;
     }
 
+    public void setSelectedCurso() {
+        this.selectedCurso = true;
+        editarButton.setVisible(true);
+        atualizarButton.setVisible(true);
+        deletarButton.setVisible(true);         
+    }    
+    
     void setTitulos(String t, String[] columns) {
         setTitle(t);
         mostrarTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columns));
@@ -246,7 +258,10 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
             }
             if (selectedDisciplina) {
                 readDisciplinasTable();
-            }            
+            }   
+            if (selectedCurso) {
+                readCursosTable();
+            }              
         }
         if (e.getSource() == editarButton) {
             try {
@@ -260,7 +275,12 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
                     editarCriarDisciplina d = new editarCriarDisciplina();
                     d.setVisible(true);
                     d.setDisciplina(dDAO.read(id));
-                }                
+                } 
+                if (selectedCurso) {
+                    editarCriarCurso c = new editarCriarCurso();
+                    c.setVisible(true);
+                    c.setCurso(cDAO.read(id));
+                }                    
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(null, "Selecione algum da lista");
             }

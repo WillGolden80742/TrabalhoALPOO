@@ -7,6 +7,7 @@ package Model.DAO;
 
 import Model.bean.Aluno;
 import ConnectionFactory.ConnectionFactory;
+import Model.bean.Curso;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
  * @author rafam
  */
 public class alunosDAO {
+    
     public List <Aluno> read(){
         Connection con = ConnectionFactory.getConnection();
      
@@ -43,4 +45,5 @@ public class alunosDAO {
         }
         return Alunos ;
     }
+
 }
