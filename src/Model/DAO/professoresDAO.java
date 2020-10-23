@@ -7,7 +7,6 @@ package Model.DAO;
 
 import ConnectionFactory.ConnectionFactory;
 import Model.bean.Professor;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,12 +37,19 @@ public class professoresDAO {
         PreparedStatement stmt;
 
         try {
-            stmt = con.prepareStatement("update professor set NomeProf = ?, DataNasc = ?, EspecProf = ?, TituloProf = ? where IdentProf = ?");
+            stmt = con.prepareStatement("update professor set NomeProf = ?, DataNasc = ?, EspecProf = ?, TituloProf = ?, logradouro = ?,bairro = ?, cidade = ?, num  = ?, uf = ?, telefone = ?, telRes = ? where IdentProf = ?");
             stmt.setString(1, p.getNomeProf());
             stmt.setString(2, p.getDataNasc());
             stmt.setString(3, p.getEspecProf());
             stmt.setString(4, p.getTituloProf());
-            stmt.setInt(5, p.getIdentProf());
+            stmt.setString(5, p.getLogradouro());
+            stmt.setString(6, p.getBairro());
+            stmt.setString(7, p.getCidade());
+            stmt.setString(8, p.getNumero());
+            stmt.setString(9, p.getEstado());
+            stmt.setString(10, p.getTelefone());
+            stmt.setString(11, p.getTelefoneRes());            
+            stmt.setInt(12, p.getIdentProf());
             stmt.executeUpdate();
             setProfessoresStatus("Atualizado com sucesso!");
         } catch (SQLException ex) {
@@ -56,11 +62,18 @@ public class professoresDAO {
         PreparedStatement stmt;
 
         try {
-            stmt = con.prepareStatement("Insert into professor (NomeProf,DataNasc,EspecProf,TituloProf) value (?,?,?,?)");
+            stmt = con.prepareStatement("Insert into professor (NomeProf,DataNasc,EspecProf,TituloProf,logradouro,bairro,cidade,num,uf,telefone,telRes) value (?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, p.getNomeProf());
             stmt.setString(2, p.getDataNasc());
             stmt.setString(3, p.getEspecProf());
             stmt.setString(4, p.getTituloProf());
+            stmt.setString(5, p.getLogradouro());
+            stmt.setString(6, p.getBairro());
+            stmt.setString(7, p.getCidade());
+            stmt.setString(8, p.getNumero());
+            stmt.setString(9, p.getEstado());
+            stmt.setString(10, p.getTelefone());
+            stmt.setString(11, p.getTelefoneRes());
             stmt.executeUpdate();
             setProfessoresStatus("Criado com sucesso!");
         } catch (SQLException ex) {
@@ -105,6 +118,14 @@ public class professoresDAO {
                 professor.setDataNasc(rs.getString("DataNasc"));
                 professor.setEspecProf(rs.getString("EspecProf"));
                 professor.setTituloProf(rs.getString("TituloProf"));
+                professor.setLogradouro(rs.getString("logradouro"));
+                professor.setEstado(rs.getString("bairro"));
+                professor.setCidade(rs.getString("cidade"));
+                professor.setBairro(rs.getString("bairro"));                
+                professor.setNumero(rs.getString("num"));
+                professor.setEstado(rs.getString("uf"));
+                professor.setTelefone(rs.getString("telefone"));
+                professor.setTelefoneRes(rs.getString("telRes"));                
             }
         } catch (SQLException ex) {
             Logger.getLogger(professoresDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -26,7 +26,7 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
         initComponents();
         addGroup();
         setSaveButton();
-        setLocation(400, 400);
+        setLocation(400, 200);
         setCursosList();
     }
 

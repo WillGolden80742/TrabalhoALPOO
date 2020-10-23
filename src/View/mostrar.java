@@ -33,6 +33,7 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
         initComponents();
         listener();
         hideTools();
+        setLocation(400,200);        
     }
 
     void hideTools() {

@@ -17,17 +17,19 @@ import javax.swing.JOptionPane;
  */
 public class editarCriarProfessor extends javax.swing.JFrame implements ActionListener {
 
-    
     public editarCriarProfessor() {
         initComponents();
         addGroup();
-        setSaveButton ();
-        setLocation(400,400);
+        setSaveButton();
+        setLocation(400, 200);
+        toggleEnd();
     }
-    
-    professoresDAO pDAO = new professoresDAO();
+
+    private professoresDAO pDAO = new professoresDAO();
     private Professor professor = new Professor();
     private boolean selectedProfessor = false;
+
+    boolean hideEndStatus = true;
 
     private boolean isSelectedProfessor() {
         return selectedProfessor;
@@ -36,28 +38,37 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
     private void setSelectedProfessor() {
         this.selectedProfessor = true;
     }
-    
+
     public Professor getProfessor() {
         return professor;
     }
-     
+
     public void setProfessor(Professor professor) {
         this.professor = professor;
         nomeP.setText(professor.getNomeProf());
         dataNascP.setText(professor.getDataNasc());
+        // Endereço Inicio     
+        logradouro.setText(professor.getLogradouro());
+        bairro.setText(professor.getBairro());
+        cidade.setText(professor.getCidade());
+        num.setText(professor.getNumero());
+        uf.setText(professor.getEstado());
+        telefone.setText(professor.getTelefone());
+        telRes.setText(professor.getTelefoneRes());
+        // Endereço Fim     
         switch (professor.getTituloProf()) {
             case "Bacharel":
                 BacharelCheckBox.setSelected(true);
                 break;
             case "Especialista Lato Sensu":
                 EspecialistaLatoSensuCheckBox.setSelected(true);
-                break;  
+                break;
             case "Mestrado":
                 MestradoCheckBox.setSelected(true);
-                break; 
+                break;
             case "Doutorado":
                 DoutoradoCheckBox.setSelected(true);
-                break;                                    
+                break;
         }
         switch (professor.getEspecProf()) {
             case "Informática":
@@ -65,30 +76,29 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                 break;
             case "Matemática":
                 MatematicaCheckBox.setSelected(true);
-                break;  
+                break;
             case "Medicina":
                 MedicinaCheckBox.setSelected(true);
-                break; 
+                break;
             case "Farmacologia":
                 FarmacologiaCheckBox.setSelected(true);
-                break;   
+                break;
             case "Odontologia":
                 OdontologiaCheckBox.setSelected(true);
-                break;   
+                break;
             case "Direito":
                 DireitoCheckBox.setSelected(true);
-                break;    
+                break;
             case "Psicologia":
                 PsicologiaCheckBox.setSelected(true);
-                break;   
+                break;
             case "Recursos Humanos":
                 RecursosHumanosCheckBox.setSelected(true);
-                break;                   
-        }        
+                break;
+        }
         setSelectedProfessor();
         setSaveButton();
     }
-
 
     void addGroup() {
         especProfGroup.add(InformaticaCheckBox);
@@ -118,13 +128,14 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         DoutoradoCheckBox.addActionListener(this);
         salvarButton.addActionListener(this);
         cancelarButton.addActionListener(this);
-    }  
-    
-    void setSaveButton () {
-        if(isSelectedProfessor() == true) {
+        addEnd.addActionListener(this);
+    }
+
+    void setSaveButton() {
+        if (isSelectedProfessor() == true) {
             salvarButton.setText("SALVAR");
         } else {
-            salvarButton.setText("CRIAR");        
+            salvarButton.setText("CRIAR");
         }
     }
 
@@ -136,6 +147,34 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         if (e.getSource() == cancelarButton) {
             dispose();
         }
+        if (e.getSource() == addEnd) {
+            toggleEnd();
+        }
+    }
+
+    void toggleEnd() {
+        if (hideEndStatus) {
+            this.hideEndStatus = false;
+            setSize(500, 230);
+        } else {
+            this.hideEndStatus = true;
+            setSize(500, 315);
+        }
+        logradouroLabel.setVisible(hideEndStatus);
+        logradouro.setVisible(hideEndStatus);
+        bairroLabel.setVisible(hideEndStatus);
+        bairro.setVisible(hideEndStatus);
+        cidadeLabel.setVisible(hideEndStatus);
+        cidade.setVisible(hideEndStatus);
+        numLabel.setVisible(hideEndStatus);
+        num.setVisible(hideEndStatus);
+        ufLabel.setVisible(hideEndStatus);
+        uf.setVisible(hideEndStatus);
+        telefoneLabel.setVisible(hideEndStatus);
+        telefone.setVisible(hideEndStatus);
+        telefoneResLabel.setVisible(hideEndStatus);
+        telRes.setVisible(hideEndStatus);
+        addEnd.setVisible(!hideEndStatus);
     }
 
     void Salvar() {
@@ -143,6 +182,15 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         p.setNomeProf(nomeP.getText());
         p.setDataNasc(dataNascP.getText());
         boolean b = true;
+        // Endereço Inicio     
+        p.setLogradouro(logradouro.getText());
+        p.setBairro(bairro.getText());
+        p.setCidade(cidade.getText());
+        p.setNumero(num.getText());
+        p.setEstado(uf.getText());
+        p.setTelefone(telefone.getText());
+        p.setTelefoneRes(telRes.getText());
+        // Endereço Fim          
         // -------------------------------------------        
         if (BacharelCheckBox.isSelected() == true) {
             p.setTituloProf(BacharelCheckBox.getText());
@@ -182,10 +230,10 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                 p.setIdentProf(getProfessor().getIdentProf());
                 pDAO.update(p);
             } else {
-                pDAO.create(p);                
+                pDAO.create(p);
             }
             statusProf.setText(pDAO.getProfessoresStatus());
-        } 
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -213,6 +261,22 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         salvarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
         statusProf = new javax.swing.JLabel();
+        addEnd = new javax.swing.JButton();
+        cidade = new javax.swing.JTextField();
+        telefone = new javax.swing.JFormattedTextField();
+        telefoneLabel = new javax.swing.JLabel();
+        cidadeLabel = new javax.swing.JLabel();
+        logradouroLabel = new javax.swing.JLabel();
+        bairroLabel = new javax.swing.JLabel();
+        logradouro = new javax.swing.JTextField();
+        telefoneResLabel = new javax.swing.JLabel();
+        numLabel = new javax.swing.JLabel();
+        ufLabel = new javax.swing.JLabel();
+        telRes = new javax.swing.JFormattedTextField();
+        uf = new javax.swing.JTextField();
+        num = new javax.swing.JTextField();
+        bairro = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setTitle("Professor");
         setResizable(false);
@@ -260,86 +324,214 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         statusProf.setForeground(new java.awt.Color(51, 153, 0));
         statusProf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        addEnd.setText("Endereço");
+
+        try {
+            telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        telefoneLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        telefoneLabel.setForeground(new java.awt.Color(102, 102, 102));
+        telefoneLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        telefoneLabel.setText("Telefone : ");
+
+        cidadeLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        cidadeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        cidadeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cidadeLabel.setText("Cidade : ");
+
+        logradouroLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        logradouroLabel.setForeground(new java.awt.Color(102, 102, 102));
+        logradouroLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        logradouroLabel.setText("Lograd. :");
+
+        bairroLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        bairroLabel.setForeground(new java.awt.Color(102, 102, 102));
+        bairroLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        bairroLabel.setText("Bairro :");
+
+        telefoneResLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        telefoneResLabel.setForeground(new java.awt.Color(102, 102, 102));
+        telefoneResLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        telefoneResLabel.setText("Tel. Res. : ");
+
+        numLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        numLabel.setForeground(new java.awt.Color(102, 102, 102));
+        numLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        numLabel.setText("nº : ");
+
+        ufLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        ufLabel.setForeground(new java.awt.Color(102, 102, 102));
+        ufLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ufLabel.setText("UF : ");
+
+        try {
+            telRes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(nomeP, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cidadeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(telefoneLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(logradouroLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(5, 5, 5)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cidade, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(telefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                                    .addComponent(logradouro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(telefoneResLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(bairroLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(numLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(telRes, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(num, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ufLabel)
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(bairro, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2))
-                            .addComponent(BacharelCheckBox)
-                            .addComponent(EspecialistaLatoSensuCheckBox)
-                            .addComponent(MestradoCheckBox)
-                            .addComponent(DoutoradoCheckBox)))
+                                .addComponent(statusProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RecursosHumanosCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PsicologiaCheckBox)
-                    .addComponent(DireitoCheckBox)
-                    .addComponent(OdontologiaCheckBox)
-                    .addComponent(FarmacologiaCheckBox)
-                    .addComponent(MedicinaCheckBox)
-                    .addComponent(MatematicaCheckBox)
-                    .addComponent(InformaticaCheckBox)
-                    .addComponent(cancelarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(dataNascP))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(DoutoradoCheckBox)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BacharelCheckBox)
+                                        .addGap(139, 139, 139)
+                                        .addComponent(InformaticaCheckBox))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(EspecialistaLatoSensuCheckBox)
+                                        .addGap(67, 67, 67)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(PsicologiaCheckBox)
+                                            .addComponent(FarmacologiaCheckBox)))
+                                    .addComponent(MestradoCheckBox))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(RecursosHumanosCheckBox)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(MatematicaCheckBox)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(OdontologiaCheckBox)
+                                                .addGap(1, 1, 1)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(DireitoCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(MedicinaCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(nomeP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(94, 94, 94)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(dataNascP, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeP, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dataNascP, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BacharelCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(EspecialistaLatoSensuCheckBox)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nomeP, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataNascP, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(InformaticaCheckBox)
+                            .addComponent(BacharelCheckBox)
+                            .addComponent(MatematicaCheckBox)
+                            .addComponent(MedicinaCheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(EspecialistaLatoSensuCheckBox)
+                            .addComponent(FarmacologiaCheckBox)
+                            .addComponent(OdontologiaCheckBox)
+                            .addComponent(DireitoCheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PsicologiaCheckBox)
+                            .addComponent(RecursosHumanosCheckBox)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
                         .addComponent(MestradoCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DoutoradoCheckBox))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(InformaticaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(MatematicaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MedicinaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FarmacologiaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(OdontologiaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(DireitoCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PsicologiaCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RecursosHumanosCheckBox)))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DoutoradoCheckBox)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logradouroLabel)
+                    .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bairroLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cidadeLabel)
+                    .addComponent(ufLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(num, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefoneResLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(salvarButton)
-                        .addComponent(cancelarButton))
-                    .addComponent(statusProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(statusProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarButton))
+                .addGap(5, 5, 5))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bairro, cidade, logradouro, num, telRes, telefone, uf});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -358,15 +550,31 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
     private javax.swing.JCheckBox OdontologiaCheckBox;
     private javax.swing.JCheckBox PsicologiaCheckBox;
     private javax.swing.JCheckBox RecursosHumanosCheckBox;
+    private javax.swing.JButton addEnd;
+    private javax.swing.JTextField bairro;
+    private javax.swing.JLabel bairroLabel;
     private javax.swing.JButton cancelarButton;
+    private javax.swing.JTextField cidade;
+    private javax.swing.JLabel cidadeLabel;
     private javax.swing.JFormattedTextField dataNascP;
     private javax.swing.ButtonGroup especProfGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField logradouro;
+    private javax.swing.JLabel logradouroLabel;
     private javax.swing.JTextField nomeP;
+    private javax.swing.JTextField num;
+    private javax.swing.JLabel numLabel;
     private javax.swing.JButton salvarButton;
     private javax.swing.JLabel statusProf;
+    private javax.swing.JFormattedTextField telRes;
+    private javax.swing.JFormattedTextField telefone;
+    private javax.swing.JLabel telefoneLabel;
+    private javax.swing.JLabel telefoneResLabel;
     private javax.swing.ButtonGroup tituloProfGroup;
+    private javax.swing.JTextField uf;
+    private javax.swing.JLabel ufLabel;
     // End of variables declaration//GEN-END:variables
 
 }

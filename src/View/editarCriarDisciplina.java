@@ -27,7 +27,7 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
         initComponents();
         addGroup();
         setSaveButton();
-        setLocation(400, 400);
+        setLocation(400, 200);
         setProfessoresList();
     }
 

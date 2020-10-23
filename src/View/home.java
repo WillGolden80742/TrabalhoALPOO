@@ -29,6 +29,7 @@ public class home extends javax.swing.JFrame implements ActionListener {
         mostrarCursosProfessoresItem.addActionListener(this);
         mostrarCursosDisciplinasItem.addActionListener(this);
         mostrarProfessoresDisciplinasItem.addActionListener(this);
+        sairItem.addActionListener(this);
         lightItem.addActionListener(this);
         darkItem.addActionListener(this);
     }
