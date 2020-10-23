@@ -156,9 +156,11 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         if (hideEndStatus) {
             this.hideEndStatus = false;
             setSize(500, 230);
+            endSeparator.setVisible(hideEndStatus);
         } else {
             this.hideEndStatus = true;
             setSize(500, 315);
+            endSeparator.setVisible(hideEndStatus);            
         }
         logradouroLabel.setVisible(hideEndStatus);
         logradouro.setVisible(hideEndStatus);
@@ -276,7 +278,7 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         uf = new javax.swing.JTextField();
         num = new javax.swing.JTextField();
         bairro = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        endSeparator = new javax.swing.JSeparator();
 
         setTitle("Professor");
         setResizable(false);
@@ -332,38 +334,31 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
             ex.printStackTrace();
         }
 
-        telefoneLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        telefoneLabel.setForeground(new java.awt.Color(102, 102, 102));
+        telefoneLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         telefoneLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         telefoneLabel.setText("Telefone : ");
 
-        cidadeLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        cidadeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        cidadeLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cidadeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         cidadeLabel.setText("Cidade : ");
 
-        logradouroLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        logradouroLabel.setForeground(new java.awt.Color(102, 102, 102));
+        logradouroLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         logradouroLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        logradouroLabel.setText("Lograd. :");
+        logradouroLabel.setText("Lograd. : ");
 
-        bairroLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        bairroLabel.setForeground(new java.awt.Color(102, 102, 102));
+        bairroLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bairroLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        bairroLabel.setText("Bairro :");
+        bairroLabel.setText("Bairro : ");
 
-        telefoneResLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        telefoneResLabel.setForeground(new java.awt.Color(102, 102, 102));
+        telefoneResLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         telefoneResLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         telefoneResLabel.setText("Tel. Res. : ");
 
-        numLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        numLabel.setForeground(new java.awt.Color(102, 102, 102));
+        numLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         numLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         numLabel.setText("nº : ");
 
-        ufLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        ufLabel.setForeground(new java.awt.Color(102, 102, 102));
+        ufLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ufLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ufLabel.setText("UF : ");
 
@@ -396,9 +391,11 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                                     .addComponent(logradouro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, 0)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bairroLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(telefoneResLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(numLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bairroLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(numLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(0, 0, 0)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(telRes, javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,50 +413,44 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(2, 2, 2))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(endSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(DoutoradoCheckBox)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BacharelCheckBox)
-                                        .addGap(139, 139, 139)
-                                        .addComponent(InformaticaCheckBox))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(EspecialistaLatoSensuCheckBox)
-                                        .addGap(67, 67, 67)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PsicologiaCheckBox)
-                                            .addComponent(FarmacologiaCheckBox)))
-                                    .addComponent(MestradoCheckBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(RecursosHumanosCheckBox)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(MatematicaCheckBox)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(OdontologiaCheckBox)
-                                                .addGap(1, 1, 1)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(DireitoCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(MedicinaCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
                                 .addComponent(nomeP)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
-                                .addGap(94, 94, 94)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(26, 26, 26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MestradoCheckBox)
+                                    .addComponent(DoutoradoCheckBox)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(EspecialistaLatoSensuCheckBox)
+                                            .addComponent(BacharelCheckBox))
+                                        .addGap(67, 67, 67)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(RecursosHumanosCheckBox)
+                                            .addComponent(InformaticaCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(PsicologiaCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(FarmacologiaCheckBox))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(OdontologiaCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(MedicinaCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(DireitoCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(MatematicaCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(63, 63, 63))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(dataNascP, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {FarmacologiaCheckBox, InformaticaCheckBox, PsicologiaCheckBox, RecursosHumanosCheckBox});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -475,25 +466,30 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(InformaticaCheckBox)
                             .addComponent(BacharelCheckBox)
-                            .addComponent(MatematicaCheckBox)
-                            .addComponent(MedicinaCheckBox))
+                            .addComponent(MatematicaCheckBox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(EspecialistaLatoSensuCheckBox)
                             .addComponent(FarmacologiaCheckBox)
-                            .addComponent(OdontologiaCheckBox)
-                            .addComponent(DireitoCheckBox))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PsicologiaCheckBox)
-                            .addComponent(RecursosHumanosCheckBox)))
+                            .addComponent(OdontologiaCheckBox)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(EspecialistaLatoSensuCheckBox)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(MestradoCheckBox)
+                        .addComponent(PsicologiaCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RecursosHumanosCheckBox)
+                            .addComponent(DireitoCheckBox)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MestradoCheckBox)
+                            .addComponent(MedicinaCheckBox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DoutoradoCheckBox)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(endSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logradouroLabel)
@@ -551,10 +547,10 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
     private javax.swing.JTextField cidade;
     private javax.swing.JLabel cidadeLabel;
     private javax.swing.JFormattedTextField dataNascP;
+    private javax.swing.JSeparator endSeparator;
     private javax.swing.ButtonGroup especProfGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField logradouro;
     private javax.swing.JLabel logradouroLabel;
     private javax.swing.JTextField nomeP;
