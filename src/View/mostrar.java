@@ -332,7 +332,7 @@ public class mostrar extends javax.swing.JFrame implements ActionListener {
                 if (selectedAluno) {
                     editarCriarAluno a = new editarCriarAluno();
                     a.setVisible(true);
-                    a.setCurso(aDAO.read(id));
+                    a.setAluno(aDAO.read(id));
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(null, "Selecione algum da lista");

@@ -167,7 +167,7 @@ public class home extends javax.swing.JFrame implements ActionListener {
             m.readProfessoresTable();
             m.setSelectedProfessor();
         }
-
+        
         if (e.getSource() == mostrarCursosDisciplinasItem) {
             mostrar m = new mostrar();
             m.setVisible(true);

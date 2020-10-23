@@ -2,8 +2,6 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="especProfGroup">
-    </Component>
     <Component class="javax.swing.ButtonGroup" name="tituloProfGroup">
     </Component>
   </NonVisualComponents>
@@ -56,7 +54,7 @@
                                   <Component id="telefoneResLabel" alignment="1" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="numLabel" min="-2" pref="117" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -82,48 +80,34 @@
                       </Group>
                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="endSeparator" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <Component id="endSeparator" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="MestradoCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DoutoradoCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="EspecialistaLatoSensuCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BacharelCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Component id="nomeP" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="MestradoCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="DoutoradoCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="EspecialistaLatoSensuCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="BacharelCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="RecursosHumanosCheckBox" linkSize="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="InformaticaCheckBox" linkSize="2" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                          <Component id="PsicologiaCheckBox" linkSize="2" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                          <Component id="FarmacologiaCheckBox" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="OdontologiaCheckBox" max="32767" attributes="0"/>
-                                  <Component id="MedicinaCheckBox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="DireitoCheckBox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="MatematicaCheckBox" alignment="0" max="32767" attributes="0"/>
-                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="dataNascP" min="-2" pref="85" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="dataNascP" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="218" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -135,73 +119,65 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nomeP" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="dataNascP" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InformaticaCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BacharelCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="MatematicaCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="FarmacologiaCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="OdontologiaCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="EspecialistaLatoSensuCheckBox" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="PsicologiaCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="RecursosHumanosCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="DireitoCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="MestradoCheckBox" min="-2" max="-2" attributes="0"/>
-                          <Component id="MedicinaCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="nomeP" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="dataNascP" min="-2" pref="26" max="-2" attributes="0"/>
+                                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="BacharelCheckBox" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="EspecialistaLatoSensuCheckBox" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <Component id="MestradoCheckBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="DoutoradoCheckBox" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane1" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="endSeparator" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="logradouroLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="bairro" linkSize="1" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="logradouro" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="bairroLabel" alignment="3" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="logradouroLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bairroLabel" alignment="3" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cidade" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cidadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ufLabel" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="numLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="num" linkSize="1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="uf" linkSize="1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cidade" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cidadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="num" linkSize="1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="uf" linkSize="1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="telefone" linkSize="1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="telefoneLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="telefoneResLabel" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="telRes" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="telefone" linkSize="1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="telefoneLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="telRes" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="addEnd" min="-2" pref="25" max="-2" attributes="0"/>
@@ -236,46 +212,6 @@
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##-##-####" subtype="-1" type="5"/>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="InformaticaCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Inform&#xe1;tica"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="MatematicaCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Matem&#xe1;tica"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="MedicinaCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Medicina"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="FarmacologiaCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Farmacologia"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="OdontologiaCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Odontologia"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="DireitoCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Direito"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="PsicologiaCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Psicologia"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="RecursosHumanosCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Recursos Humanos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="BacharelCheckBox">
@@ -314,7 +250,7 @@
           <Color blue="0" green="99" red="33" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="10" style="3"/>
+          <Font name="Arial" size="14" style="3"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="99" red="33" type="rgb"/>
@@ -416,5 +352,120 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="endSeparator">
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jList1">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="95">
+                <StringItem index="0" value="Analise e desenvolvimento de sistemas"/>
+                <StringItem index="1" value="Administra&#xe7;&#xe3;o"/>
+                <StringItem index="2" value="Administra&#xe7;&#xe3;o p&#xfa;blica"/>
+                <StringItem index="3" value="Arquitetura e urbanismo"/>
+                <StringItem index="4" value="Artes visuais"/>
+                <StringItem index="5" value="Banco de dados"/>
+                <StringItem index="6" value="Biomedicina"/>
+                <StringItem index="7" value="Ci&#xea;ncia de dados"/>
+                <StringItem index="8" value="Ci&#xea;ncias biol&#xf3;gicas"/>
+                <StringItem index="9" value="Ci&#xea;ncias cont&#xe1;beis"/>
+                <StringItem index="10" value="Ci&#xea;ncias da computa&#xe7;&#xe3;o"/>
+                <StringItem index="11" value="Ci&#xea;ncias da natureza"/>
+                <StringItem index="12" value="Ci&#xea;ncias econ&#xf4;micas"/>
+                <StringItem index="13" value="Ci&#xea;ncias exatas"/>
+                <StringItem index="14" value="Ci&#xea;ncias humanas"/>
+                <StringItem index="15" value="Com&#xe9;rcio exterior"/>
+                <StringItem index="16" value="Computa&#xe7;&#xe3;o"/>
+                <StringItem index="17" value="Comunica&#xe7;&#xe3;o institucional"/>
+                <StringItem index="18" value="Cozinha contempor&#xe2;nea"/>
+                <StringItem index="19" value="Defesa cibern&#xe9;tica"/>
+                <StringItem index="20" value="Design de moda"/>
+                <StringItem index="21" value="Design gr&#xe1;fico"/>
+                <StringItem index="22" value="Direito"/>
+                <StringItem index="23" value="Educa&#xe7;&#xe3;o f&#xed;sica"/>
+                <StringItem index="24" value="Enfermagem"/>
+                <StringItem index="25" value="Engenharia ambiental e sanit&#xe1;ria"/>
+                <StringItem index="26" value="Engenharia civil"/>
+                <StringItem index="27" value="Engenharia de controle e automa&#xe7;&#xe3;o"/>
+                <StringItem index="28" value="Engenharia de petr&#xf3;leo"/>
+                <StringItem index="29" value="Engenharia de produ&#xe7;&#xe3;o"/>
+                <StringItem index="30" value="Engenharia de software"/>
+                <StringItem index="31" value="Engenharia el&#xe9;trica"/>
+                <StringItem index="32" value="Engenharia mec&#xe2;nica"/>
+                <StringItem index="33" value="Est&#xe9;tica e cosm&#xe9;tica"/>
+                <StringItem index="34" value="Farm&#xe1;cia"/>
+                <StringItem index="35" value="Filosofia"/>
+                <StringItem index="36" value="F&#xed;sica"/>
+                <StringItem index="37" value="Fisioterapia"/>
+                <StringItem index="38" value="Formac&#xe3;o pedag&#xf3;gica"/>
+                <StringItem index="39" value="Gastronomia"/>
+                <StringItem index="40" value="Geografia"/>
+                <StringItem index="41" value="Gerontologia - bem estar e educa&#xe7;&#xe3;o"/>
+                <StringItem index="42" value="Gest&#xe3;o ambiental"/>
+                <StringItem index="43" value="Gest&#xe3;o comercial"/>
+                <StringItem index="44" value="Gest&#xe3;o da produ&#xe7;&#xe3;o industrial"/>
+                <StringItem index="45" value="Gest&#xe3;o da qualidade"/>
+                <StringItem index="46" value="Gest&#xe3;o da tecnologia da informa&#xe7;&#xe3;o"/>
+                <StringItem index="47" value="Gest&#xe3;o de recursos humanos"/>
+                <StringItem index="48" value="Gest&#xe3;o de seguran&#xe7;a privada"/>
+                <StringItem index="49" value="Gest&#xe3;o de turismo"/>
+                <StringItem index="50" value="Gest&#xe3;o e empreendedorismo"/>
+                <StringItem index="51" value="Gest&#xe3;o financeira"/>
+                <StringItem index="52" value="Gest&#xe3;o hospitalar"/>
+                <StringItem index="53" value="Gest&#xe3;o p&#xfa;blica"/>
+                <StringItem index="54" value="Hist&#xf3;ria"/>
+                <StringItem index="55" value="Investiga&#xe7;&#xe3;o forense e per&#xed;cia criminal"/>
+                <StringItem index="56" value="Jogos digitais"/>
+                <StringItem index="57" value="Jornalismo"/>
+                <StringItem index="58" value="Letras - espanhol"/>
+                <StringItem index="59" value="Letras - espanhol"/>
+                <StringItem index="60" value="Letras - espanhol"/>
+                <StringItem index="61" value="Letras - ingl&#xea;s"/>
+                <StringItem index="62" value="Letras - ingl&#xea;s"/>
+                <StringItem index="63" value="Letras - ingl&#xea;s"/>
+                <StringItem index="64" value="Letras - libras - l&#xed;ngua portuguesa"/>
+                <StringItem index="65" value="Letras - l&#xed;ngua portuguesa"/>
+                <StringItem index="66" value="Letras - l&#xed;ngua portuguesa e libras"/>
+                <StringItem index="67" value="Letras - portugu&#xea;s"/>
+                <StringItem index="68" value="Log&#xed;stica"/>
+                <StringItem index="69" value="Marketing"/>
+                <StringItem index="70" value="Matem&#xe1;tica"/>
+                <StringItem index="71" value="Media&#xe7;&#xe3;o"/>
+                <StringItem index="72" value="Neg&#xf3;cios imobili&#xe1;rios"/>
+                <StringItem index="73" value="Nutri&#xe7;&#xe3;o"/>
+                <StringItem index="74" value="Odontologia cirurgi&#xe3;o dentista"/>
+                <StringItem index="75" value="Pedagogia"/>
+                <StringItem index="76" value="Pedagogia"/>
+                <StringItem index="77" value="Processos escolares"/>
+                <StringItem index="78" value="Processos gerenciais"/>
+                <StringItem index="79" value="Psicologia"/>
+                <StringItem index="80" value="Publicidade e propaganda"/>
+                <StringItem index="81" value="Qu&#xed;mica"/>
+                <StringItem index="82" value="Radiologia"/>
+                <StringItem index="83" value="Redes de computadores"/>
+                <StringItem index="84" value="Rela&#xe7;&#xf5;es internacionais"/>
+                <StringItem index="85" value="Secretariado executivo"/>
+                <StringItem index="86" value="Seguran&#xe7;a no trabalho"/>
+                <StringItem index="87" value="Seguran&#xe7;a p&#xfa;blica"/>
+                <StringItem index="88" value="Servi&#xe7;o social"/>
+                <StringItem index="89" value="Sistemas de informa&#xe7;&#xe3;o"/>
+                <StringItem index="90" value="Sistemas para internet"/>
+                <StringItem index="91" value="Sociologia"/>
+                <StringItem index="92" value="Tecnologias educacionais"/>
+                <StringItem index="93" value="Teologia"/>
+                <StringItem index="94" value="Turismo"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
