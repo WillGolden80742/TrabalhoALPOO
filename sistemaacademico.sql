@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Out-2020 às 03:36
+-- Tempo de geração: 23-Out-2020 às 18:59
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.4
 
@@ -59,7 +59,8 @@ INSERT INTO `aluno` (`Matricula`, `nomeAluno`, `DataNascAluno`, `codcurso`) VALU
 (1113, 'Paula Antonia', '20-05-1989', 4),
 (1114, 'Paulo Vitor', '15-03-2000', 59),
 (1116, 'Amelia da Silva', '14-04-1996', 43),
-(1117, 'Amanda Pontes', '01-02-1998', 56);
+(1117, 'Amanda Pontes', '01-02-1998', 53),
+(1139, 'Allyson Rodrigues', '24-23-5255', 65);
 
 -- --------------------------------------------------------
 
@@ -150,8 +151,8 @@ INSERT INTO `curso` (`codCurso`, `nomeCurso`, `tipoCurso`, `cargaHoraria`, `codI
 (6, 'Farmacologia', 'Curso Superior', 4000, 2),
 (9, 'Odontologia', 'Mestrado', 4000, 3),
 (10, 'Recursos Humanos', 'Doutorado', 3500, 3),
-(11, 'Administração', 'Mestrado', 4000, 3),
-(12, 'Administração pública', 'Bacharel', 4000, 3),
+(11, 'Administração', 'Bacharel', 4000, 3),
+(12, 'Administração pública', 'Doutorado', 4000, 3),
 (14, 'Ciência de dados', 'Bacharel', 4000, 3),
 (15, 'Ciencia da Computação', 'Bacharel', 4000, 3),
 (16, 'Ciência de dados', 'Bacharel', 4000, 3),
@@ -196,15 +197,17 @@ INSERT INTO `curso` (`codCurso`, `nomeCurso`, `tipoCurso`, `cargaHoraria`, `codI
 (56, 'Gestão da tecnologia da informação', 'Bacharel', 4000, 3),
 (57, 'Gestão de recursos humanos', 'Bacharel', 4000, 3),
 (58, 'Gestão de segurança privada', 'Bacharel', 4000, 3),
-(59, 'Gestão de turismo', 'Bacharel', 4000, 3),
+(59, 'Gestão de turismo', 'Bacharel', 4000, 1),
 (60, 'Gestão e empreendedorismo', 'Bacharel', 4000, 3),
 (61, 'Ciencia da Computação', 'Doutorado', 4000, 3),
 (62, 'Administração', 'Especialista Lato Sensu', 34553, 345),
 (63, 'Biomedicina', 'Mestrado', 5644, 4),
 (64, 'Marketing', 'Doutorado', 4666, 4),
-(65, 'Arquitetura e urbanismo', 'Bacharel', 34534, 2),
+(65, 'Administração', 'Bacharel', 34534, 3),
 (66, 'Artes visuais', 'Bacharel', 32432, 2),
-(67, 'Analise e desenvolvimento de sistemas', 'Bacharel', 345, 3);
+(67, 'Analise e desenvolvimento de sistemas', 'Bacharel', 345, 3),
+(70, 'Artes visuais', 'Doutorado', 5444, 3),
+(71, 'Artes visuais', 'Doutorado', 5444, 3);
 
 -- --------------------------------------------------------
 
@@ -302,9 +305,9 @@ INSERT INTO `disciplina` (`CodDisc`, `nomeDisc`, `Cargahoraria`, `AulasSemana`, 
 (33, 'Juridico3', 40, 2, 4),
 (34, 'Normas1', 40, 2, 9),
 (35, 'Normas2', 40, 2, 3),
-(36, 'Normas3', 40, 2, 5),
+(36, 'Normas3', 40, 2, 9),
 (37, 'Filosofia', 0, 2, 14),
-(38, 'wf', 44, 4, 6);
+(40, 'Direito Ambiental', 200, 3, 8);
 
 -- --------------------------------------------------------
 
@@ -316,7 +319,7 @@ CREATE TABLE `professor` (
   `IdentProf` int(12) NOT NULL,
   `NomeProf` varchar(35) NOT NULL,
   `DataNasc` varchar(15) NOT NULL,
-  `EspecProf` varchar(35) NOT NULL,
+  `EspecProf` varchar(70) NOT NULL,
   `TituloProf` varchar(35) NOT NULL,
   `logradouro` varchar(80) DEFAULT NULL,
   `bairro` varchar(50) DEFAULT NULL,
@@ -334,13 +337,13 @@ CREATE TABLE `professor` (
 INSERT INTO `professor` (`IdentProf`, `NomeProf`, `DataNasc`, `EspecProf`, `TituloProf`, `logradouro`, `bairro`, `cidade`, `num`, `uf`, `telefone`, `telRes`) VALUES
 (3, 'ANDRÉ LUIS ', '  -  -    ', 'Informática', 'Especialista Lato Sensu', '', '', '', '', '', '', ''),
 (4, 'ARNALDO MÁRCIO', '  -  -    ', 'Odontologia', 'Especialista Lato Sensu', '', '', '', '', '', '', ''),
-(5, 'ELISSON ANTÔNIO', '  -  -    ', 'Medicina', 'Especialista Lato Sensu', '', '', '', '', '', '', ''),
+(5, 'ELISSON ANTÔNIO', '19-01-1997', 'Medicina', 'Especialista Lato Sensu', 'Av. Tiradentes', 'Osasco', 'São Paulo', '23', 'SP', '(11) 94334-5434', '(  )     -    '),
 (6, 'FERNANDO SEGATO', '  -  -    ', 'Odontologia', 'Especialista Lato Sensu', '', '', '', '', '', '', ''),
 (7, 'FLÁVIO TEIXEIRA', '  -  -    ', 'Informática', 'Bacharel', '', '', '', '', '', '', ''),
-(8, 'INÊS CONCEIÇÃO', '  -  -    ', 'Psicologia', 'Especialista Lato Sensu', '', '', '', '', '', '', ''),
+(8, 'INÊS CONCEIÇÃO', '  -  -    ', 'Psicologia', 'Especialista Lato Sensu', '', '', '', '', '', '(  )      -    ', '(  )     -    '),
 (9, 'JOÃO BATISTA ', '01-03-1990', 'Direito', 'Especialista Lato Sensu', '', '', '', '', '', '', ''),
 (10, 'JÚLIO CÉSAR', '  -  -    ', 'Informática', 'Bacharel', '', '', '', '', '', '', ''),
-(14, 'William', '19-01-1997', 'Matemática', 'Bacharel', 'Rua Michel', 'Heliopolis', 'São Paulo ', '34', 'MG', '(32) 93542-5245', '(11) 4494-5435');
+(14, 'William', '19-01-1997', 'Investigação forense e perícia criminal', 'Bacharel', 'Rua Michel', 'Heliopolis', 'São Paulo ', '34', 'MG', '(32) 93542-5245', '(11) 4494-5435');
 
 --
 -- Índices para tabelas despejadas
@@ -401,25 +404,25 @@ ALTER TABLE `professor`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `Matricula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1137;
+  MODIFY `Matricula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1140;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `codCurso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `codCurso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de tabela `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `CodDisc` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `CodDisc` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `IdentProf` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IdentProf` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restrições para despejos de tabelas
