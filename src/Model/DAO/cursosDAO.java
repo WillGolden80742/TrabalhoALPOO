@@ -7,7 +7,6 @@ package Model.DAO;
 
 import Model.bean.Curso;
 import ConnectionFactory.ConnectionFactory;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +67,7 @@ public class cursosDAO {
                 Curso curso = new Curso();
                 curso.setCodCurso(rs.getInt("CodCurso"));
                 curso.setNomeCurso(rs.getString("NomeCurso"));
+                curso.setTipoCurso(rs.getString("tipoCurso"));                
                 Cursos.add(curso);
             }
         } catch (SQLException ex) {

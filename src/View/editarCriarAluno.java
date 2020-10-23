@@ -31,11 +31,12 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         setSaveButton();
         setLocation(400,200);
         setCursosSelectedList();
+        notasButton.setVisible(false);
     }
 
     void setCursosSelectedList() {
         cList.forEach((p) -> {
-            cursoComboBox.addItem("id : "+p.getCodCurso()+", nome : "+p.getNomeCurso());
+            cursoComboBox.addItem(p.getCodCurso()+" - "+p.getNomeCurso()+" - "+p.getTipoCurso());
         });
     }
 
@@ -66,6 +67,7 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
             }
             i++;
         }
+        notasButton.setVisible(true);
         setSelectedAluno();
         setSaveButton();
     }
@@ -73,6 +75,7 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
     void addGroup() {
         salvarButton.addActionListener(this);
         cancelarButton.addActionListener(this);
+        notasButton.addActionListener(this);
         //  --------------------------------------------------------             
     }
 
@@ -89,10 +92,16 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         if (e.getSource() == salvarButton) {
             Salvar();
         }
+        if (e.getSource() == notasButton) {
+            alunoMedia aMv = new alunoMedia(aDAO.readNotas(aluno.getMatricula()));
+            aMv.setVisible(true);
+        }        
         if (e.getSource() == cancelarButton) {
             dispose();
         }
     }
+    
+
 
     void Salvar() {
         Aluno a = new Aluno();
@@ -134,9 +143,9 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         nomeAluno = new javax.swing.JTextField();
         dataNasc = new javax.swing.JFormattedTextField();
         aulaLabel2 = new javax.swing.JLabel();
+        notasButton = new javax.swing.JButton();
 
         setTitle("Aluno");
-        setResizable(false);
 
         salvarButton.setText("SALVAR");
 
@@ -148,8 +157,9 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         cursoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione curso" }));
 
         statusCurso.setBackground(new java.awt.Color(51, 153, 0));
-        statusCurso.setFont(new java.awt.Font("Arial", 3, 10)); // NOI18N
+        statusCurso.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         statusCurso.setForeground(new java.awt.Color(51, 153, 0));
+        statusCurso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         try {
             dataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
@@ -160,36 +170,38 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         aulaLabel2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         aulaLabel2.setText("Nasc. :");
 
+        notasButton.setText("NOTAS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(aulaLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(aulaLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(statusCurso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(aulaLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(aulaLabel1)
-                                .addGap(4, 4, 4)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeAluno)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(dataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cursoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addComponent(dataNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cursoComboBox, 0, 160, Short.MAX_VALUE))
+                    .addComponent(nomeAluno))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(statusCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(notasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,9 +215,10 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
                     .addComponent(dataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aulaLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cursoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notasButton)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(statusCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salvarButton)
                     .addComponent(cancelarButton))
@@ -225,6 +238,7 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
     private javax.swing.JComboBox<String> cursoComboBox;
     private javax.swing.JFormattedTextField dataNasc;
     private javax.swing.JTextField nomeAluno;
+    private javax.swing.JButton notasButton;
     private javax.swing.JButton salvarButton;
     private javax.swing.JLabel statusCurso;
     private javax.swing.ButtonGroup tipoCursoGroup;

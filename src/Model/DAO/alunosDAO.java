@@ -7,6 +7,7 @@ package Model.DAO;
 
 import Model.bean.Aluno;
 import ConnectionFactory.ConnectionFactory;
+import Model.bean.AlunoMedia;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -35,8 +36,8 @@ public class alunosDAO {
     public List<Aluno> read() {
         Connection con = ConnectionFactory.getConnection();
 
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement stmt;
+        ResultSet rs;
         List<Aluno> Alunos = new ArrayList<>();
         try {
             stmt = con.prepareStatement("select * from aluno as a inner join curso as c on a.codCurso = c.codCurso ");
@@ -58,8 +59,8 @@ public class alunosDAO {
     public Aluno read(int id) {
         Connection con = ConnectionFactory.getConnection();
 
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement stmt;
+        ResultSet rs;
         Aluno aluno = new Aluno();
         try {
             stmt = con.prepareStatement("select * from Aluno where Matricula = " + id + " ORDER by nomeAluno");
@@ -75,6 +76,33 @@ public class alunosDAO {
         }
         return aluno;
     }
+    
+    public List<AlunoMedia> readNotas (int id) {
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt;
+        ResultSet rs;
+        List<AlunoMedia> AlunoMedia = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("select d.nomeDisc, aM.NP1,aM.NP2,((aM.NP1+aM.NP2)/2) as Media, aM.Faltas from Aluno a inner join alunomedia aM on a.Matricula = aM.Matricula INNER JOIN disciplina d on d.CodDisc = aM.codDisc where a.Matricula = "+id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                AlunoMedia alunoM = new AlunoMedia();                
+                alunoM.setNomeDisc(rs.getString("d.nomeDisc"));
+                alunoM.setNp1(rs.getFloat("aM.NP1"));
+                alunoM.setNp2(rs.getFloat("aM.NP2"));
+                alunoM.setNp2(rs.getFloat("aM.NP2"));
+                alunoM.setMedia(rs.getFloat("Media"));
+                alunoM.setFaltas(rs.getInt("aM.Faltas"));  
+                AlunoMedia.add(alunoM);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(alunosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return AlunoMedia;
+    }
+    
 
     public void update(Aluno a) {
         Connection con = ConnectionFactory.getConnection();

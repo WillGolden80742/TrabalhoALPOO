@@ -228,7 +228,7 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
         jLabel3.setFont(new java.awt.Font("Arial", 3, 10)); // NOI18N
 
         statusDisc.setBackground(new java.awt.Color(51, 153, 0));
-        statusDisc.setFont(new java.awt.Font("Arial", 3, 10)); // NOI18N
+        statusDisc.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         statusDisc.setForeground(new java.awt.Color(51, 153, 0));
         statusDisc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
