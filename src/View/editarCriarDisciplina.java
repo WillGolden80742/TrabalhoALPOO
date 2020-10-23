@@ -20,8 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class editarCriarDisciplina extends javax.swing.JFrame implements ActionListener {
 
-    professoresDAO pDAO = new professoresDAO();
-    List<Professor> pList = pDAO.read();
+    private disciplinasDAO dDAO = new disciplinasDAO();
+    private Disciplina disciplina = new Disciplina();
+    private boolean selectedDisciplina = false;    
+    private professoresDAO pDAO = new professoresDAO();
+    private List<Professor> pList = pDAO.read();
 
     public editarCriarDisciplina() {
         initComponents();
@@ -36,10 +39,6 @@ public class editarCriarDisciplina extends javax.swing.JFrame implements ActionL
             profComboBox.addItem(p.getNomeProf());
         }
     }
-
-    disciplinasDAO dDAO = new disciplinasDAO();
-    private Disciplina disciplina = new Disciplina();
-    private boolean selectedDisciplina = false;
 
     private boolean isSelectedDisciplina() {
         return selectedDisciplina;

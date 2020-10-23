@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class alunoMedia extends javax.swing.JFrame {
 
-    List<AlunoMedia> alunomediaList = new ArrayList<>();
+    private List<AlunoMedia> alunomediaList = new ArrayList<>();
 
     public alunoMedia(List<AlunoMedia> alunomediaList) {
         initComponents();

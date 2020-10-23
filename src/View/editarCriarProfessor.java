@@ -17,6 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class editarCriarProfessor extends javax.swing.JFrame implements ActionListener {
 
+    private professoresDAO pDAO = new professoresDAO();
+    private Professor professor = new Professor();
+    private boolean selectedProfessor = false;
+    private boolean hideEndStatus = true;
+    
     public editarCriarProfessor() {
         initComponents();
         addGroup();
@@ -24,12 +29,6 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
         setLocation(400, 200);
         toggleEnd();
     }
-
-    private professoresDAO pDAO = new professoresDAO();
-    private Professor professor = new Professor();
-    private boolean selectedProfessor = false;
-
-    boolean hideEndStatus = true;
 
     private boolean isSelectedProfessor() {
         return selectedProfessor;
@@ -70,53 +69,11 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                 DoutoradoCheckBox.setSelected(true);
                 break;
         }
-//        switch (professor.getEspecProf()) {
-//            case "Informática":
-//                InformaticaCheckBox.setSelected(true);
-//                break;
-//            case "Matemática":
-//                MatematicaCheckBox.setSelected(true);
-//                break;
-//            case "Medicina":
-//                MedicinaCheckBox.setSelected(true);
-//                break;
-//            case "Farmacologia":
-//                FarmacologiaCheckBox.setSelected(true);
-//                break;
-//            case "Odontologia":
-//                OdontologiaCheckBox.setSelected(true);
-//                break;
-//            case "Direito":
-//                DireitoCheckBox.setSelected(true);
-//                break;
-//            case "Psicologia":
-//                PsicologiaCheckBox.setSelected(true);
-//                break;
-//            case "Recursos Humanos":
-//                RecursosHumanosCheckBox.setSelected(true);
-//                break;
-//        }
         setSelectedProfessor();
         setSaveButton();
     }
 
     void addGroup() {
-//        especProfGroup.add(InformaticaCheckBox);
-//        InformaticaCheckBox.addActionListener(this);
-//        especProfGroup.add(MatematicaCheckBox);
-//        MatematicaCheckBox.addActionListener(this);
-//        especProfGroup.add(MedicinaCheckBox);
-//        MedicinaCheckBox.addActionListener(this);
-//        especProfGroup.add(FarmacologiaCheckBox);
-//        FarmacologiaCheckBox.addActionListener(this);
-//        especProfGroup.add(OdontologiaCheckBox);
-//        OdontologiaCheckBox.addActionListener(this);
-//        especProfGroup.add(DireitoCheckBox);
-//        DireitoCheckBox.addActionListener(this);
-//        especProfGroup.add(PsicologiaCheckBox);
-//        PsicologiaCheckBox.addActionListener(this);
-//        especProfGroup.add(RecursosHumanosCheckBox);
-//        RecursosHumanosCheckBox.addActionListener(this);
         //  --------------------------------------------------------    
         tituloProfGroup.add(BacharelCheckBox);
         BacharelCheckBox.addActionListener(this);
@@ -222,27 +179,7 @@ public class editarCriarProfessor extends javax.swing.JFrame implements ActionLi
                 b = false;
             }
         }
-        // -----------------------------------       
-//        if (InformaticaCheckBox.isSelected() == true) {
-//            p.setEspecProf(InformaticaCheckBox.getText());
-//        } else if (MatematicaCheckBox.isSelected() == true) {
-//            p.setEspecProf(MatematicaCheckBox.getText());
-//        } else if (MedicinaCheckBox.isSelected() == true) {
-//            p.setEspecProf(MedicinaCheckBox.getText());
-//        } else if (FarmacologiaCheckBox.isSelected() == true) {
-//            p.setEspecProf(FarmacologiaCheckBox.getText());
-//        } else if (OdontologiaCheckBox.isSelected() == true) {
-//            p.setEspecProf(OdontologiaCheckBox.getText());
-//        } else if (DireitoCheckBox.isSelected() == true) {
-//            p.setEspecProf(DireitoCheckBox.getText());
-//        } else if (PsicologiaCheckBox.isSelected() == true) {
-//            p.setEspecProf(PsicologiaCheckBox.getText());
-//        } else if (RecursosHumanosCheckBox.isSelected() == true) {
-//            p.setEspecProf(RecursosHumanosCheckBox.getText());
-//        } else {
-//            b = false;
-//            JOptionPane.showMessageDialog(null, "Selecione uma especialidade para o professor");
-//        }
+        
         if (b) {
             if (isSelectedProfessor()) {
                 p.setIdentProf(getProfessor().getIdentProf());

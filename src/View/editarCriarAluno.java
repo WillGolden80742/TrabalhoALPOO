@@ -21,28 +21,26 @@ import javax.swing.JOptionPane;
  */
 public class editarCriarAluno extends javax.swing.JFrame implements ActionListener {
 
-    alunosDAO aDAO = new alunosDAO();
-    cursosDAO cDAO = new cursosDAO();    
-    List<Curso> cList = cDAO.read();
+    private Aluno aluno = new Aluno();
+    private boolean selectedAluno = false;
+    private alunosDAO aDAO = new alunosDAO();
+    private cursosDAO cDAO = new cursosDAO();
+    private List<Curso> cList = cDAO.read();
 
     public editarCriarAluno() {
         initComponents();
         addGroup();
         setSaveButton();
-        setLocation(400,200);
+        setLocation(400, 200);
         setCursosSelectedList();
         notasButton.setVisible(false);
     }
 
     void setCursosSelectedList() {
         cList.forEach((p) -> {
-            cursoComboBox.addItem(p.getCodCurso()+" - "+p.getNomeCurso()+" - "+p.getTipoCurso());
+            cursoComboBox.addItem(p.getCodCurso() + " - " + p.getNomeCurso() + " - " + p.getTipoCurso());
         });
     }
-
-    disciplinasDAO dDAO = new disciplinasDAO();
-    private Aluno aluno = new Aluno();
-    private boolean selectedAluno = false;
 
     private boolean isSelectedAluno() {
         return selectedAluno;
@@ -63,7 +61,7 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         int i = 0;
         for (Curso c : cList) {
             if (c.getCodCurso() == aluno.getCodCurso()) {
-                cursoComboBox.setSelectedIndex(i+1);
+                cursoComboBox.setSelectedIndex(i + 1);
             }
             i++;
         }
@@ -95,13 +93,11 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
         if (e.getSource() == notasButton) {
             alunoMedia aMv = new alunoMedia(aDAO.readNotas(aluno.getMatricula()));
             aMv.setVisible(true);
-        }        
+        }
         if (e.getSource() == cancelarButton) {
             dispose();
         }
     }
-    
-
 
     void Salvar() {
         Aluno a = new Aluno();
@@ -110,14 +106,14 @@ public class editarCriarAluno extends javax.swing.JFrame implements ActionListen
             a.setNomeAluno(nomeAluno.getText());
         } else {
             b = false;
-            JOptionPane.showMessageDialog(null, "Digite nome de aluno");        
-        } 
+            JOptionPane.showMessageDialog(null, "Digite nome de aluno");
+        }
         a.setDataNascAluno(dataNasc.getText());
         try {
             a.setCodCurso(cList.get(cursoComboBox.getSelectedIndex() - 1).getCodCurso());
         } catch (Exception ex) {
             b = false;
-            JOptionPane.showMessageDialog(null, "selecione o curso");              
+            JOptionPane.showMessageDialog(null, "selecione o curso");
         }
         if (b) {
             if (isSelectedAluno()) {

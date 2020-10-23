@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class editarCriarCurso extends javax.swing.JFrame implements ActionListener {
 
-    cursosDAO cDAO = new cursosDAO();
-    List<Curso> cList = cDAO.read();
+    private Curso curso = new Curso();
+    private cursosDAO cDAO = new cursosDAO();
 
     public editarCriarCurso() {
         initComponents();
@@ -37,8 +37,6 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
         }
     }
 
-    disciplinasDAO dDAO = new disciplinasDAO();
-    private Curso curso = new Curso();
     private boolean selectedCurso = false;
 
     private boolean isSelectedCurso() {
@@ -202,11 +200,6 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
         BacharelCheckBox.setText("Bacharel");
 
         EspecialistaLatoSensuCheckBox.setText("Especialista Lato Sensu");
-        EspecialistaLatoSensuCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EspecialistaLatoSensuCheckBoxActionPerformed(evt);
-            }
-        });
 
         MestradoCheckBox.setText("Mestrado");
 
@@ -309,10 +302,6 @@ public class editarCriarCurso extends javax.swing.JFrame implements ActionListen
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void EspecialistaLatoSensuCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspecialistaLatoSensuCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EspecialistaLatoSensuCheckBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

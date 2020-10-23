@@ -20,10 +20,10 @@ import javax.swing.JOptionPane;
  */
 public class mostrar extends javax.swing.JFrame implements ActionListener {
 
-    alunosDAO aDAO = new alunosDAO();
-    disciplinasDAO dDAO = new disciplinasDAO();
-    cursosDAO cDAO = new cursosDAO();
-    professoresDAO pDAO = new professoresDAO();
+    private alunosDAO aDAO = new alunosDAO();
+    private disciplinasDAO dDAO = new disciplinasDAO();
+    private cursosDAO cDAO = new cursosDAO();
+    private professoresDAO pDAO = new professoresDAO();
     private boolean selectedProfessor = false;
     private boolean selectedDisciplina = false;
     private boolean selectedCurso = false;
