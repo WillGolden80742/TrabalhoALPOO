@@ -1,3 +1,8 @@
+
+CREATE DATABASE sistemaacademico;
+
+USE sistemaacademico;
+
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
