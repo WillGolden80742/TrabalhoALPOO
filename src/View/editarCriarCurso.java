@@ -6,11 +6,9 @@
 package View;
 
 import Model.DAO.cursosDAO;
-import Model.DAO.disciplinasDAO;
 import Model.bean.Curso;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
