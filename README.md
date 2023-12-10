@@ -41,7 +41,7 @@ The University Management System consists of several components, including:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/university-management-system.git
+git clone https://github.com/WillGolden80742/TrabalhoALPOO.git
 ```
 
 2. Set up the MySQL database:
