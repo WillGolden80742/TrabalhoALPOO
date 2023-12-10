@@ -66,12 +66,3 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- FlatLaf Library: [FormDev](https://github.com/FlatLaf/FlatLaf)
-- MySQL Database: [MySQL](https://www.mysql.com/)
-- Icons: [FontAwesome](https://fontawesome.com/)
-```
-
-Make sure to replace placeholders like `your-username` and update the content accordingly. Feel free to add or modify sections based on your project's specific needs.
